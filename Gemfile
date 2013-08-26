@@ -52,3 +52,8 @@ group :test, :development do
   gem "simplecov"
   gem "capybara"
 end
+
+group :production do
+  gem 'thin'
+  gem 'pg'
+end
