@@ -35,8 +35,8 @@ application.js: application-56fd8c86181a6a30f1582b142be021a8.js
 application/index.js: application-56fd8c86181a6a30f1582b142be021a8.js
 mobile.js: mobile-69b91c0beffa7b7d87202b7db3387c8a.js
 mobile/index.js: mobile-69b91c0beffa7b7d87202b7db3387c8a.js
-application.css: application-d2ece098b90ac3f65b02c924b476e96e.css
-application/index.css: application-d2ece098b90ac3f65b02c924b476e96e.css
+application.css: application-2727b33464cca870de4ad7fe387e18c8.css
+application/index.css: application-2727b33464cca870de4ad7fe387e18c8.css
 chosen-sprite.png: chosen-sprite-0b638291e3ab1e89592983b5810b9b79.png
 chosen-sprite/index.png: chosen-sprite-0b638291e3ab1e89592983b5810b9b79.png
 chosen-sprite@2x.png: chosen-sprite@2x-8fa0fb1eb347c8dc10a5381b22383ac6.png
