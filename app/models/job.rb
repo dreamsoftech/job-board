@@ -34,7 +34,7 @@ class Job < ActiveRecord::Base
   validates_presence_of :location
   validates_presence_of :description
   validates_presence_of :apply_information
-  validates_presence_of :owner
+  # validates_presence_of :owner
   
   validates_format_of :description, :with => /(ruby|rails)/i, :message => "Doesn't seem to be a Ruby or Rails related job"
   TAGS = %w[Finance and Accounting
@@ -141,8 +141,8 @@ Web Designing
   OCCUPATION = ['Web back-end', 'Web front-end', 'Web-design',
                 'QA/Testing', 'Other']
 
-  validates_inclusion_of :job_type, :in => JOB_TYPE 
-  validates_inclusion_of :occupation, :in => OCCUPATION
+  # validates_inclusion_of :job_type, :in => JOB_TYPE 
+  # validates_inclusion_of :occupation, :in => OCCUPATION
   
   belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
 
