@@ -22,20 +22,121 @@
 class Job < ActiveRecord::Base
   
   attr_accessor :deadline_forever
+  attr_accessible :tags
   
   extend Searchable
-  searchable_by :title, :job_type, :occupation, :company_name, :url, :location, :description, :apply_information
+  searchable_by :title, :job_type, :tags, :occupation, :company_name, :company_logo, :url, :location, :description, :apply_information, :highlighted
   
   validates_presence_of :title
   validates_presence_of :job_type
   validates_presence_of :company_name
-  validates_presence_of :occupation
+  # validates_presence_of :occupation
   validates_presence_of :location
   validates_presence_of :description
   validates_presence_of :apply_information
   validates_presence_of :owner
   
   validates_format_of :description, :with => /(ruby|rails)/i, :message => "Doesn't seem to be a Ruby or Rails related job"
+  TAGS = %w[Finance and Accounting
+Graphics Designing
+English Language
+General Programming
+Graphics Designing
+Office Skills
+Sales and Marketing
+Translation Skills
+Graphics Designing
+International Languages
+Translation Skills
+Java Technologies
+Operating Systems
+English Language
+Sales and Marketing
+Web Designing
+Sales and Marketing
+English Language
+General Programming
+International Languages
+Web Designing
+Graphics Designing
+General Programming
+Web Designing
+Internet Concepts
+Operating Systems
+Databases
+Web Designing
+General Programming
+Finance and Accounting
+Miscellaneous Certifications
+Internet Programming
+Electronics
+Java Technologies
+Web Designing
+Networking
+Internet Programming
+Miscellaneous Certifications
+Operating Systems
+General Programming
+Office Skills
+Databases
+Translation Skills
+Databases
+International Languages
+Internet Concepts
+International Languages
+Translation Skills
+Web Designing
+Miscellaneous Certifications
+English Language
+Microsoft Technologies
+General Programming
+Sales and Marketing
+General Management
+Internet Programming
+Java Technologies
+General Programming
+Graphics Designing
+Sales and Marketing
+Internet Programming
+Operating Systems
+Computer Skills
+Networking
+Operating Systems
+Computer Skills
+Graphics Designing
+International Languages
+Graphics Designing
+Computer Skills
+Translation Skills
+Networking
+Internet Programming
+Computer Skills
+General Management
+International Languages
+Databases
+General Programming
+Health and Fitness
+Graphics Designing
+Web Designing
+English Language
+Web Designing
+Translation Skills
+Web Designing
+English Language
+Computer Skills
+Graphics Designing
+Databases
+Mobile Technologies
+Web Designing
+Finance and Accounting
+Translation Skills
+.Net Technology
+Miscellaneous Certifications
+English Language
+Translation Skills
+Internet Concepts
+Web Designing
+]
   JOB_TYPE = %w[Full-time Part-time Contract Internship Other]
   OCCUPATION = ['Web back-end', 'Web front-end', 'Web-design',
                 'QA/Testing', 'Other']
@@ -88,6 +189,25 @@ class Job < ActiveRecord::Base
     user && owner == user
   end
   
+  def elapsed
+    diff = Time.now - self.created_at
+    days  = (diff / 1.day).round
+    hours = (diff / 1.hour).round
+    mins  = (diff / 1.minute).round
+
+    if days > 0
+      elapsed_time = "#{days} day"
+      elapsed_time += "s" unless days == 1
+    elsif hours > 0
+      elapsed_time = "#{hours} hour"
+      elapsed_time += "s" unless hours == 1
+    else
+      elapsed_time = "#{mins} minute"
+      elapsed_time += "s" unless mins == 1
+    end
+    elapsed_time
+  end
+
   private
   
   def set_deadline

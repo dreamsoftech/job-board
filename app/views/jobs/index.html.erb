@@ -1,23 +1,63 @@
-<p class="post-job clearfix"><%= link_to t("post_a_new_job"), new_job_path, :title => t("post_a_new_job") %></p>
+<div class="container">
+	<div class="row-fluid">
+		<div class="span8">
+			<div class="code">
+				<h3><%= @jobs.length %> jobs for developers</h3>
+			</div>
+			<% @jobs.each do |job| %>
+		    <hr>
+				<div class="row-fluid">
+					<div class="new-tag pull-left">
+						<%= link_to 'new', '', :class => 'btn btn-u-mini' %>
+					</div>
+		      <div class="span11 booking-blocks">
+		        <div style="overflow:hidden;">
+		        	<h4>
+		        		<%= link_to job.title, job_path(job), :style => 'float: left;' %>
+		        		<span class="hour pull-right light-gray"><%= job.elapsed %> ago</span>
+		        	</h4>
+		        	<br>
+	            <h5>
+	            	<strong><%= job.company_name %></strong>
+	            	<normal><%= job.location %></normal>
+	            </h5>
+	            <p class="light-gray"><%= job.description.slice!(0, 120) %> 
+	            	<% if job.description.length > 120 %>
+	            		...
+	            	<% end %>
+	            </p>
+		        </div>
+		        <div class="pull-left blog-page blog-item">
+		         	<ul class="unstyled inline blog-tags pull-left">
+	            	<li><a href="#">jquery</a></li>
+	            	<li><a href="#">sql</a></li>
+	            	<li><a href="#">ruby</a></li>
+	            	<li><a href="#">mysql</a></li>
+	            </ul>
+	          </div>
+	          <%= link_to 'How to Apply', '', :class => 'btn btn-u-mini pull-right' %>
+		      </div>
+		    </div><!-- Row Fliud for each Job-->
+      <% end %>
+    </div><!-- Job List Pane -->
+    <div class="span4 sidebar">
+    	<br>
+			<p><%= link_to "POST A JOB", new_job_path, :class => "btn-u btn-large" %></p>
+			<br>
+			<p class="text-left light-gray" style="margin-left: 50px">250$ for 30 days</p>
+			<%= render :partial => "common/search_form" %>
+	    </div><!-- Right Side Bar -->
+    </div>
+  </div>
+</div>
+<!-- <span class="paperclip"></span> -->
 
-<table cellspacing="0" class="joblist">
-    <thead>
-	<tr>
-		<th><%= t("job.posted") %></th>
-		<th><%= t("job.title") %></th>
-		<th><%= t("job.company_name") %></th>
-		<th><%= t("job.location") %></th>
-	</tr>
-	</thead>
-	<tbody>	
-	<% @jobs.each do |job| %>
-		<tr>
-			<td><%= job.created_at.to_date %></td>
-			<td><%= link_to job.title, job_path(job) %></td>
-			<td><%= job.company_name %></td>
-			<td><%= job.location %></td>
-		</tr>
-	<% end %>
-    </tbody>
-</table>
-<span class="paperclip"></span>
+<script type="text/javascript">
+  $(function(){
+    $.fn.formLabels();
+    $("#search-form").submit(function(){
+      var formVal = $("form").serialize();
+      parent.$("#default div.results").html(formVal);
+    })
+  });
+</script>

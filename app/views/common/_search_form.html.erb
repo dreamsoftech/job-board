@@ -1,4 +1,19 @@
-<%= form_tag jobs_path, :id => "search-form", :class => "search", :method => :get do %>
-  <%= text_field_tag :keyword, "", :title => "Search", :class => "text" %>
-  <%= submit_tag t(:search), :disable_with => t(:submiting), :class => "search-submit" %>
+<%= form_tag jobs_path, :id => "search-form", :class => "navbar-search", :method => :get do %>
+	<div class="input-append">
+  	<%= text_field_tag :keyword, "", :class => "span10", :placeholder => 'Search' %>
+	  <button class="btn" type="submit"><i class="icon-search"></i></button>
+	</div>
+	<div>
+		<label>
+			<%= check_box_tag :type1 %>
+			Work remotely
+		</label>
+		
+		<label>
+			<%= check_box_tag :type2 %>
+			Offers Location
+		</label>
+		<br><br><br><br>
+		<a class="btn-u rss"><i class="icon-rss"></i></a>Subscribe to RSS Feed 
+	</div>
 <% end %>

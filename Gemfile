@@ -16,8 +16,12 @@ end
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'jquery-rails'
+gem 'font-awesome-sass-rails'
+gem "bootstrap-sass", ">= 2.3.0.0"
 gem 'devise', '~>2.1.3'
 gem 'mysql2'
+gem 'simple_form'
 
 gem "babosa"
 gem "rails_autolink"
@@ -39,6 +43,7 @@ group :development do
   gem "capistrano"
   gem "magic_encoding"
   gem "annotate"
+  gem "sqlite3"
 end
 
 group :test, :development do

@@ -17,27 +17,21 @@
 
   <%= auto_discovery_link_tag(:rss, "http://feeds.feedburner.com/rubyjobs-taiwan", :title => "Ruby Jobs in Taiwan RSS feed") %>
 
-<script type="text/javascript">
-	$(function(){
-		$.fn.formLabels();
-		$("#search-form").submit(function(){
-			var formVal = $("form").serialize();
-			parent.$("#default div.results").html(formVal);
-		})
-	});
-</script>
+  <%= csrf_meta_tag %>
+  <%= javascript_include_tag "application" %>
+  <%= render :partial => "common/facebook_js" %>
+  <%= google_plusone_javascript_include_tag(:async => true) %>
+  <%= yield :scripts %>
 
-<%= csrf_meta_tag %>
 </head>
 <body>
 <div id="wrapper">
     <div id="header">
-        <h1><a href="/">RubyJobs</a></h1>
+        <h1><a href="/">Job Board</a></h1>
         <div class="right">
             <p class="member">
               <%= render :partial => "common/usernav" %>
             </p>
-            <%= render :partial => "common/search_form" %>
         </div>
     </div>
     <div id="container">
@@ -48,7 +42,7 @@
         </div>
     </div>
     <div id="footer">
-        <ul class="menu clearfix">
+<!--         <ul class="menu clearfix">
             <li><%= link_to t(:faq), about_path %></li>
             <li><%= link_to t(:rss_feed), "http://feeds.feedburner.com/rubyjobs-taiwan" %></li>
             <li class="twitter"><%= link_to t(:twitter), "http://twitter.com/rubytaiwan" %></li>
@@ -59,16 +53,10 @@
 			<%= link_to "繁體中文", :controller => controller.controller_name, 
 					         :action => controller.action_name, :locale => "zh_tw" %>
 	    </p>
-        <address>The job board is a free service by <a href="http://ruby.tw">Ruby Taiwan</a> and hosted by <a href="http://www.openfoundry.org" target="_blank">OSSF</a>.</address>
+        <address>The job board is a free service by <a href="http://ruby.tw">Ruby Taiwan</a> and hosted by <a href="http://www.openfoundry.org" target="_blank">OSSF</a>.</address> -->
     </div>
 </div>
 
-  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
-  <%= javascript_include_tag "application" %>
-  <%= render :partial => "common/facebook_js" %>
-  <%= google_plusone_javascript_include_tag(:async => true) %>
-  <%= yield :scripts %>
-  
 <%= render :partial => "common/google_analytics" %>
 
 </body>

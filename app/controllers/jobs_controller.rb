@@ -27,6 +27,11 @@ class JobsController < ApplicationController
   end
 
   def create
+    tags = params[:prep][:tags]
+    tags.each do |t|
+      tag_names.push Job::TAGS[t]
+    end
+    params[:prep][:tags] = tag_names.join(",")
     @job = current_user.jobs.build(params[:job])
 
     if @job.save

@@ -15,7 +15,7 @@ en:
   close: Close the job
   are_you_sure: Are you sure?
   
-  post_a_new_job: Post a new job
+  post_a_job: POST A JOB
   list_my_posting: List my posting
   
   faq: FAQ
@@ -26,6 +26,7 @@ en:
     posted: Posted
     title: Job Title
     company_name: Company Name
+    tags: Tags
     type: Job Type
     occupation: Occupation
     location: Location

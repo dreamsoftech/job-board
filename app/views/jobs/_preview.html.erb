@@ -1,0 +1,46 @@
+<div class="job-content">
+	<div class="row-fluid">
+		<div class="span9">
+			<h2 id="title"></h2>
+			<p class="hour pull-left light-gray"></p>
+			<br>
+			<h5>
+		  	<strong id="company_name"></strong> - 
+		  	<normal id="location"></normal>
+		  </h5>
+		  <p id="url"></p>
+		  <div class="pull-left blog-page blog-item">
+		   	<ul id="tags" class="unstyled inline blog-tags pull-left">
+		    </ul>
+		  </div>
+		  
+		  <br><br><br>
+		  <p id="description">
+		  </p>
+
+		  <div class="alert apply-info">
+		  	<h5>Apply for this position</h5>
+		  	<p id="apply_information"></p>
+		  </div>
+<!-- 			<% if @job.owned_by?(current_user) %>
+			 	<%= t("job.deadline") %>: <%= @job.deadline || t("job.deadline_forever") %>
+			 	<span class="manage">
+			 	<%= link_to t(:edit), edit_job_path(@job), :class => "edit" %>	
+			 	<% if @job.closed? %>
+			 		<%= link_to t(:open), open_job_path(@job), :confirm => t(:are_you_sure), :method => :put, :class => "open" %>
+			 	<% else %>
+			 		<%= link_to t(:close), close_job_path(@job), :confirm => t(:are_you_sure), :method => :put, :class => "close" %>
+			 	<% end %>	
+			 	<%= link_to t(:delete), job_path(@job), :confirm => t(:are_you_sure), :method => :delete, :class => "delete" %>
+			 	</span>	
+			<% elsif @job.deadline %>
+			 	<%= t("job.deadline") %>: <%= @job.deadline %>
+			<% end %> -->
+			</p>
+		</div>
+    <div class="social">
+      <div class="fb-like" data-href="<%= job_url(@job) %>" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="segoe ui"></div>
+      <g:plusone href="<%= job_url(@job) %>" size="Medium"></g:plusone>
+    </div>
+	</div>
+</div>
