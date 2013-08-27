@@ -6,7 +6,7 @@
 			</div>
 			<% @jobs.each do |job| %>
 		    <hr>
-				<div class="row-fluid <%= 'apply-info' if job.highlighted == true %>">
+				<div class="row-fluid <%= 'apply-info' if job.highlighted == 't' %>">
 					<div class="new-tag pull-left">
 						<%= link_to 'new', '', :class => 'btn btn-u-mini' %>
 					</div>
