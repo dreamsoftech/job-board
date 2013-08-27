@@ -27,6 +27,8 @@ paper-crease.png: paper-crease-2d76249c688f8652ffb7f5d08e2cf931.png
 paper-crease/index.png: paper-crease-2d76249c688f8652ffb7f5d08e2cf931.png
 paper-edge.png: paper-edge-247dd0572873aa5d54599e0d0a515bf6.png
 paper-edge/index.png: paper-edge-247dd0572873aa5d54599e0d0a515bf6.png
+payment_method.jpg: payment_method-b28169c350842b88788ae82a1f5d27a6.jpg
+payment_method/index.jpg: payment_method-b28169c350842b88788ae82a1f5d27a6.jpg
 sprite.png: sprite-250c98dfa489fa0244fb92abed3241b4.png
 sprite/index.png: sprite-250c98dfa489fa0244fb92abed3241b4.png
 title-border.png: title-border-7fd3c1e10239a49d6b951bb8ee31ac35.png
@@ -35,8 +37,8 @@ application.js: application-56fd8c86181a6a30f1582b142be021a8.js
 application/index.js: application-56fd8c86181a6a30f1582b142be021a8.js
 mobile.js: mobile-69b91c0beffa7b7d87202b7db3387c8a.js
 mobile/index.js: mobile-69b91c0beffa7b7d87202b7db3387c8a.js
-application.css: application-2727b33464cca870de4ad7fe387e18c8.css
-application/index.css: application-2727b33464cca870de4ad7fe387e18c8.css
+application.css: application-2e508296d4517b38665583cb700c3e61.css
+application/index.css: application-2e508296d4517b38665583cb700c3e61.css
 chosen-sprite.png: chosen-sprite-0b638291e3ab1e89592983b5810b9b79.png
 chosen-sprite/index.png: chosen-sprite-0b638291e3ab1e89592983b5810b9b79.png
 chosen-sprite@2x.png: chosen-sprite@2x-8fa0fb1eb347c8dc10a5381b22383ac6.png
