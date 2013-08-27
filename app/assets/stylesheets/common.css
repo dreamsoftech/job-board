@@ -679,7 +679,7 @@ ul.inline > li, ol.inline > li
 }
 
 hr {
-    margin: 2px 0;
+    margin: 15px 0;
 }
 .row-fluid [class*="span"]
 {
@@ -693,7 +693,9 @@ hr {
 {
     padding: 15px 60px;
 }
-
+button{
+    border: none;
+}
 .btn-u-mini
 {
     background: none !important;

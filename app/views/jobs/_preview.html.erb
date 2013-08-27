@@ -24,6 +24,17 @@
 		  	<h5>Apply for this position</h5>
 		  	<p id="apply_information"></p>
 		  </div>
+		  <br>
+		  <br>
+		  <div>
+			  <a class="btn-u btn-lightblue btn-medium" onclick="$('.btn-next').click();">
+					Continue to Step 2 to previe your ad
+				</a>
+				or 
+				<a onclick="$('.btn-prev').click();" class="btn-small">
+					&gt;&gt; Make Changes
+				</a>
+			</div>
 <!-- 			<% if @job.owned_by?(current_user) %>
 			 	<%= t("job.deadline") %>: <%= @job.deadline || t("job.deadline_forever") %>
 			 	<span class="manage">

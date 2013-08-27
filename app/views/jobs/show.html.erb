@@ -11,10 +11,16 @@
 		  <p><%= link_to @job.url, @job.url %></p>
 		  <div class="pull-left blog-page blog-item">
 		   	<ul class="unstyled inline blog-tags pull-left">
-		    	<li><a href="#">jquery</a></li>
-		    	<li><a href="#">sql</a></li>
-		    	<li><a href="#">ruby</a></li>
-		    	<li><a href="#">mysql</a></li>
+		    	<%
+		    	unless @job.tags.nil?
+       			tags = @job.tags.split(',')
+       		%>
+       		<% tags.each do |t| %>
+        		<li><a href="#"><%= t %></a></li>
+        	<% 
+        		end 
+        	end
+        	%>
 		    </ul>
 		  </div>
 		  

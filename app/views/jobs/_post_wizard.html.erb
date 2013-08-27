@@ -23,14 +23,11 @@
 			<br><br><br><br><br>
 
 			<div class="wizard-actions">
-				<a class="btn-u btn-prev btn-medium">
-					<i class="icon-arrow-left"></i>
-					Prev
+				<a id="next-step-btn" class="btn-u btn-lightblue btn-next btn-medium">
+					Continue to Step 2 to preview your ad
 				</a>
-
-				<a class="btn-u btn-next btn-medium" data-last="Finish ">
-					Next
-					<i class="icon-arrow-right icon-on-right"></i>
+				<a class="btn-prev btn-small hide">
+					 >> Make changes
 				</a>
 			</div>
 			<div class="step-content" id="step-container">
@@ -93,14 +90,7 @@
 			</div>
 
 			<hr>
-			<h3>About your job</h3>
-<!-- 			<div class="field">
-			<%= f.label :occupation, t("job.occupation") %>
-				<% Job::OCCUPATION.each do |o| %>
-		      <%= f.radio_button :occupation, o %> <%= f.label :occupation, o, :value => o, :class => "inline" %>
-				<% end %>
-			</div>
- -->			
+			<h3>About your job</h3>		
 			<div class="field">
 			<%= f.label :description, t("job.description") %>
 			<%= f.text_area :description, :class => "text" %>
@@ -138,6 +128,11 @@
 	<div class="span4">
 		<img src="/assets/highlight-guide.jpg" />
 	</div><!-- Hightlight Image Image Area -->
+	<div class="wizard-actions">
+		<a class="btn-u btn-lightblue btn-medium" onclick="$('.btn-next').click();">
+			Continue to Step 2 to previe your ad
+		</a>
+	</div>
 </div>
 
 <%= content_for :scripts do %>
@@ -155,7 +150,7 @@
 		errorClass: 'help-inline',
 		focusInvalid: false,
 		rules: {
-			job_title: {
+			'job[title]': {
 				required: true,
 				phone: 'required'
 			},
@@ -231,16 +226,6 @@
 					<div class="row-fluid">
 	<div class="span8">
 		<div id="new-job-payment" class="form">
-			<% if @job.errors.any? %>
-			<div id="error_explanation">
-				<h3><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h3>
-				<ul>
-					<% @job.errors.full_messages.each do |msg| %>
-		  		<li><%= msg %></li>
-					<% end %>
-				</ul>
-			</div>
-			<% end %>
 			<h3>Step3: Publish your Ad</h3>
 			<hr>
 
@@ -280,7 +265,7 @@
 			Please Order And Publish your Ad
 		</button>
 		 or 
-		<a class="">
+		<a onclick="$('.btn-prev').click()" class="btn-small">
 			&gt;&gt; Make Changes
 		</a>
 		<br>
@@ -296,41 +281,65 @@
 $(function() {
 	$('[data-rel=tooltip]').tooltip();
 
-	//$(".select2").css('width','150px').select2({allowClear:true})
-	// .on('change', function(){
-	// 	$(this).closest('form').validate().element($(this));
-	// }); 
-
-
-	var $validation = false;
 	$('#fuelux-wizard').ace_wizard().on('change' , function(e, info){
-		if (info.step == 1 && $validation) {
-			if (!$('#validation-form').valid()) return false;
-		}
-			$('#title')				.html($('#job_title').val());
-			$('#company_name').html($('#job_company_name').val());
-			$('#location')		.html($('#job_location').val());
-			$('#url')					.html($('#job_url').val());
-			$('#description')	.html($('#job_description').val());
-			$('#apply_information')	.html($('#job_apply_information').val());
-			var all_tags = new Array();
-			<% Job::TAGS.each do |j| %>
-				all_tags.push("<%= j %>");
-			<% end %>
-
-			var tags = $('#job_tags').val();
-			var tag_captions = "";
-			console.log(tags);
-			for (var i = 0; i < tags.length; i++)
+	
+		if (info.direction =="next")
+		{
+			if (info.step == 1)
 			{
-				var tag_captions = tag_captions + "<li><a>"+all_tags[parseInt(tags[i])]+"</a></li>";
-			}
-			$('#tags')	.html(tag_captions);
+				$("a.btn-next").html("Continue to Step 3 to publish your ad");
+				$("a.btn-prev").removeClass("hide");
 
+				$('#title')				.html($('#job_title').val());
+				$('#company_name').html($('#job_company_name').val());
+				$('#location')		.html($('#job_location').val());
+				$('#url')					.html($('#job_url').val());
+				$('#description')	.html($('#job_description').val());
+				$('#apply_information')	.html($('#job_apply_information').val());
+				
+				var all_tags = new Array();
+				<% Job::TAGS.each do |j| %>
+					all_tags.push("<%= j %>");
+				<% end %>
+
+				var tags = $('#job_tags').val();
+				var tag_captions = "";
+				for (var i = 0; i < tags.length; i++)
+				{
+					var tag_captions = tag_captions + "<li><a>"+all_tags[parseInt(tags[i])-1]+"</a></li>";
+				}
+				$('#tags')	.html(tag_captions);
+			}
+			if (info.step == 2)
+			{
+				$("a.btn-next").html("Place Order and Publish your Ad");
+				$("a.btn-prev").removeClass("hide");
+			}
+		}
+		else if (info.direction == "previous")
+		{
+			if (info.step == 3)
+				$("a.btn-next").html("Continue to Step 3 to publish your ad");
+			else if (info.step == 2)
+			{
+				$("a.btn-next").html("Continue to Step 2 to preview your ad");
+				$("a.btn-prev").addClass("hide");
+			}
+		}
 	}).on('finished', function(e) {
 		
 	}).on('stepclick', function(e, info){
-
+		console.log(info);
+		if (info.step == 1)
+		{
+			$("a.btn-next").html("Continue to Step 2 to preview your Ad");
+			$("a.btn-prev").addClass("hide");
+		}
+		else if (info.step == 2)
+		{
+			$("a.btn-next").html("Continue to Step 3 to publish your Ad");
+			$("a.btn-prev").removeClass("hide");			
+		}
 	});
 });
 </script>

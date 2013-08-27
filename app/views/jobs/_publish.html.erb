@@ -1,16 +1,6 @@
 <div class="row-fluid">
 	<div class="span8">
 		<div id="new-job-payment" class="form">
-			<% if @job.errors.any? %>
-			<div id="error_explanation">
-				<h3><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h3>
-				<ul>
-					<% @job.errors.full_messages.each do |msg| %>
-		  		<li><%= msg %></li>
-					<% end %>
-				</ul>
-			</div>
-			<% end %>
 			<h3>Step3: Publish your Ad</h3>
 			<hr>
 

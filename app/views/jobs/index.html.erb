@@ -6,7 +6,7 @@
 			</div>
 			<% @jobs.each do |job| %>
 		    <hr>
-				<div class="row-fluid">
+				<div class="row-fluid <%= 'apply-info' if job.highlighted == true %>">
 					<div class="new-tag pull-left">
 						<%= link_to 'new', '', :class => 'btn btn-u-mini' %>
 					</div>
@@ -29,10 +29,16 @@
 		        </div>
 		        <div class="pull-left blog-page blog-item">
 		         	<ul class="unstyled inline blog-tags pull-left">
-	            	<li><a href="#">jquery</a></li>
-	            	<li><a href="#">sql</a></li>
-	            	<li><a href="#">ruby</a></li>
-	            	<li><a href="#">mysql</a></li>
+	            	<%
+	            	unless job.tags.nil?
+		         			tags = job.tags.split(',')
+		         		%>
+		         		<% tags.each do |t| %>
+	            		<li><a href="#"><%= t %></a></li>
+	            	<%
+	            		end
+	            	end
+	            	%>
 	            </ul>
 	          </div>
 	          <%= link_to 'How to Apply', '', :class => 'btn btn-u-mini pull-right' %>
