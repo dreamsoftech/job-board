@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130824203319) do
+ActiveRecord::Schema.define(:version => 20130826233641) do
 
   create_table "jobs", :force => true do |t|
     t.string   "title"
@@ -30,6 +30,11 @@ ActiveRecord::Schema.define(:version => 20130824203319) do
     t.string   "tags"
     t.string   "company_logo"
     t.boolean  "highlighted",       :default => false
+    t.string   "card_number"
+    t.string   "payment_method"
+    t.string   "zipcode"
+    t.datetime "expire_date"
+    t.string   "ccvn"
   end
 
   add_index "jobs", ["user_id"], :name => "index_jobs_on_user_id"

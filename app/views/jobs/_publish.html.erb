@@ -1,1 +1,57 @@
-<h1>Building....</h1>
+<div class="row-fluid">
+	<div class="span8">
+		<div id="new-job-payment" class="form">
+			<% if @job.errors.any? %>
+			<div id="error_explanation">
+				<h3><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h3>
+				<ul>
+					<% @job.errors.full_messages.each do |msg| %>
+		  		<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
+			<% end %>
+			<h3>Step3: Publish your Ad</h3>
+			<hr>
+
+			<div class="field">
+			<%= f.label :card_number, 'Card Number' %>
+			<%= f.text_field :card_number, :class => "text" %>
+			<img src="/assets/payment_method.jpg">
+			<%= f.hidden_field :payment_method %>
+			</div>
+			
+			<div class="field">
+			<%= label_tag :expiration, 'Expiration' %>
+			<%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}%>
+      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year"}%>
+			</div>
+
+			<div class="field">
+			<%= f.label :zipcode, "Zip/Postal Code" %>
+			<%= f.text_field :zipcode, :class => "text" %>
+			</div>
+
+			<div class="field">
+			<%= f.label :ccvn, "CCVN#" %>
+			<%= f.text_field :ccvn, :class => "text" %>
+		  </div>
+		</div> <!-- #new-job-payment div end -->
+	</div><!-- span8 end -->
+</div><!-- row-fluid end -->
+
+<div class="row-fluid">
+	<div class="span11 alert apply-info">
+		<h4 style="color:#000">Your ad is $ 400 and it will run for 30 days starting right now</h4>
+		<br>
+		<p>You are only permitted to post one job opening per ad (you cannot say “We have 4 open positions...”). This charge is non refundable. Apptopia.com reserves the right to deny or remove job posts at our discretion (we will refund your money if we don’t run your ad). If you have questions please send a message to support : https://apptopia.com/billing</p>
+		<br>
+		<button type="submit" class="btn-u btn-lightblue btn-medium">
+			Please Order And Publish your Ad
+		</button>
+		 or 
+		<a class="">
+			&gt;&gt; Make Changes
+		</a>
+		<br>
+	</div><!-- Highlight guide -->

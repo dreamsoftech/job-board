@@ -1,5 +1,5 @@
 defaults: &defaults
-  app_name: "Ruby Jobs in Taiwan"
+  app_name: "Apptopia Job board"
   domain: "http://jobsrubytw.dev"    
   facebook_app_id: 
   facebook_secret: 

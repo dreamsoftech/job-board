@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class JobsController < ApplicationController
 
-  before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  # before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_filter :find_my_job, only: [:edit, :update, :destroy, :open, :close]
 
   def index
@@ -22,17 +22,22 @@ class JobsController < ApplicationController
   end
 
   def new
-    @job = current_user.jobs.build
-    @job.deadline = Time.zone.now + 90.days
+    @job = Job.new
+    # @job.deadline = Time.zone.now + 90.days
   end
 
   def create
-    tags = params[:prep][:tags]
-    tags.each do |t|
-      tag_names.push Job::TAGS[t]
+    tags = params[:job][:tags]
+    tag_names = Array.new
+    if tags.size == 1
+      tag_names.push Job::TAGS[tags.to_i]
+    else
+      tags.each do |t|
+        tag_names.push Job::TAGS[t]
+      end
     end
-    params[:prep][:tags] = tag_names.join(",")
-    @job = current_user.jobs.build(params[:job])
+    params[:job][:tags] = tag_names.join(",")
+    @job = Job.new(params[:job])
 
     if @job.save
       redirect_to job_path(@job)
@@ -83,7 +88,7 @@ class JobsController < ApplicationController
   protected
 
   def find_my_job
-    @job = current_user.jobs.find(params[:id])
+    @job = Job.find(params[:id])
   end
 
 end

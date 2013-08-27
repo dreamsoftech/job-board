@@ -22,10 +22,10 @@
 class Job < ActiveRecord::Base
   
   attr_accessor :deadline_forever
-  attr_accessible :tags
-  
+  attr_accessible :title, :job_type, :tags, :occupation, :company_name, :company_logo, :url, :location, :description, :apply_information, :highlighted, :payment_method, :card_number, :ccvn, :expire_date, :zipcode
+
   extend Searchable
-  searchable_by :title, :job_type, :tags, :occupation, :company_name, :company_logo, :url, :location, :description, :apply_information, :highlighted
+  searchable_by :title, :job_type, :tags, :company_name, :url, :location, :description, :apply_information
   
   validates_presence_of :title
   validates_presence_of :job_type
@@ -36,7 +36,7 @@ class Job < ActiveRecord::Base
   validates_presence_of :apply_information
   # validates_presence_of :owner
   
-  validates_format_of :description, :with => /(ruby|rails)/i, :message => "Doesn't seem to be a Ruby or Rails related job"
+  # validates_format_of :description, :with => /(ruby|rails)/i, :message => "Doesn't seem to be a Ruby or Rails related job"
   TAGS = %w[Finance and Accounting
 Graphics Designing
 English Language

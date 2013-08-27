@@ -710,7 +710,9 @@ hr {
     -webkit-border-radius: 3px;
     border-radius: 3px;
 }
-
+.btn-lightblue{
+    background-color: #49ace8 !important;
+}
 .btn-medium
 {
     padding: 5px 20px;
@@ -744,7 +746,7 @@ hr {
     margin-top: 25px;
 }
 
-#new-job-post hr
+#new-job-post hr, #new-job-payment hr
 {
     margin-bottom: 25px;
 }
@@ -783,9 +785,7 @@ hr {
     margin-bottom: 10px;
     text-align: left;
 }
-.wizard-actions .btn-u{
-    background-color: #49ace8;
-}
+
 #fuelux-wizard
 {
   height: 100%;
