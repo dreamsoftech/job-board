@@ -1,5 +1,3 @@
-<h3>Step2: Preview your Ad</h3>
-<hr>
 <div class="job-content">
 	<div class="row-fluid">
 		<div class="span9">
@@ -28,13 +26,20 @@
 		  <br>
 		  <div>
 			  <a class="btn-u btn-lightblue btn-medium" onclick="$('.btn-next').click();">
-					Continue to Step 2 to previe your ad
+					Continue to Step 3 to publish your ad
 				</a>
-				or 
-				<a onclick="$('.btn-prev').click();" class="btn-small">
-					&gt;&gt; Make Changes
+				&nbsp;or 
+				<a onclick="$('#step2.btn-prev').click();" class="gray">
+					<img src="/assets/back-arrow.png"/>
+					Make Changes
 				</a>
 			</div>
+		</div>
+    <div class="social">
+    </div>
+	</div>
+</div>
+
 <!-- 			<% if @job.owned_by?(current_user) %>
 			 	<%= t("job.deadline") %>: <%= @job.deadline || t("job.deadline_forever") %>
 			 	<span class="manage">
@@ -49,11 +54,3 @@
 			<% elsif @job.deadline %>
 			 	<%= t("job.deadline") %>: <%= @job.deadline %>
 			<% end %> -->
-			</p>
-		</div>
-    <div class="social">
-      <div class="fb-like" data-href="<%= job_url(@job) %>" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="segoe ui"></div>
-      <g:plusone href="<%= job_url(@job) %>" size="Medium"></g:plusone>
-    </div>
-	</div>
-</div>

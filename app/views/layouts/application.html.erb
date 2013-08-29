@@ -27,12 +27,20 @@
 <body>
 <div id="wrapper">
     <div id="header">
-        <h1><a href="/">Job Board</a></h1>
-        <div class="right">
+      <div class="row-fluid">
+        <div class="span5 pull-left">
+          <h1><a href="/">Job Board</a></h1>
+          <a id="search-results-link" class="gray" href="/">
+            <img src="/assets/back-arrow.png"/>
+            Search results
+          </a>
+        </div>
+        <div class="right span5">
             <p class="member">
-              <a href="#"><%= render :partial => "common/usernav" %></a>
+              <a href="/">HOME<%#= render :partial => "common/usernav" %></a>
             </p>
         </div>
+      </div>
     </div>
     <div id="container">
         <div id="container-inner">

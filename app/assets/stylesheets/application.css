@@ -4,6 +4,8 @@
  *= require bootstrap-responsive
  *= require _font-awesome
  *= require chosen.min
+ *= require bootstrap-select
+ *= require prettyCheckable
  *= require colorbox/colorbox
  *= require orange
  *= require common

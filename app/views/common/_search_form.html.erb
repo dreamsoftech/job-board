@@ -1,19 +1,21 @@
 <%= form_tag jobs_path, :id => "search-form", :class => "navbar-search", :method => :get do %>
-	<div class="input-append">
-  	<%= text_field_tag :keyword, "", :class => "span10", :placeholder => 'Search' %>
-	  <button class="btn" type="submit"><i class="icon-search"></i></button>
-	</div>
-	<div>
+	<%= text_field_tag :keyword, "", :placeholder => 'Search: ‘Boston’, ‘Unity’, ‘Android’…' %>
+	<div id="search-jobtype">
 		<label>
 			<%= check_box_tag :type1 %>
-			Work remotely
+			Full-time
 		</label>
 		
 		<label>
 			<%= check_box_tag :type2 %>
-			Offers Location
+			Part-time
 		</label>
-		<br><br><br><br>
-		<a class="btn-u rss"><i class="icon-rss"></i></a>Subscribe to RSS Feed 
+		<label>
+			<%= check_box_tag :type3 %>
+			App Project
+		</label>
+		<br>
 	</div>
+	<a class=""><img src="/assets/rss-job-feed.png"></a>
+
 <% end %>

@@ -7,7 +7,13 @@
 //= require chosen.jquery.min
 //= require fuelux/fuelux.wizard.min
 //= require jquery.validate.min
+//= require bootstrap-select
+//= require prettyCheckable
 //= require additional-methods.min
+//= require jquery.ui.touch-punch.min
+//= require jquery.hotkeys.min
+//= require bootstrap-wysiwyg.min
 //= require select2.min
 //= require ace-elements.min
 //= require ace.min
+//= require common

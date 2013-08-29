@@ -1,14 +1,27 @@
 <div class="container">
-	<div class="row-fluid">
-		<div class="span8">
-			<div class="code">
-				<h3><%= @jobs.length %> jobs for developers</h3>
+	<div class="row">
+		<div class="span9">
+			<div class="row-fluid">
+				<div class="span6">
+					<strong style="font-size: 26px;">
+						<%= @jobs.length %> Jobs for developers
+					</strong>
+					<p class="gray">Latest post about <%= Job.last.elapsed %> ago</p>
+				</div>
+				
+				<div class="span3 pull-right">
+					<br>
+					<select name="sort_by" class="selectpicker pull-right" data-width="130px">
+				    <option value="date">Date</option>
+				    <option value="name">Name</option>
+				  </select>
+				</div>
 			</div>
-			<% @jobs.each do |job| %>
-		    <hr>
-				<div class="row-fluid <%= 'apply-info' if job.highlighted == 't' %>">
+
+			<% @jobs.each_with_index do |job, i| %>
+				<div class="row-fluid <%= 'apply-info' if job.highlighted == true %>">
 					<div class="new-tag pull-left">
-						<%= link_to 'new', '', :class => 'btn btn-u-mini' %>
+						<%= link_to 'NEW', '', :class => 'btn btn-u-mini' if job.elapsed_date < 6%>
 					</div>
 		      <div class="span11 booking-blocks">
 		        <div style="overflow:hidden;">
@@ -18,11 +31,11 @@
 		        	</h4>
 		        	<br>
 	            <h5>
-	            	<strong><%= job.company_name %></strong>
+	            	<strong><%= job.company_name %> - </strong>
 	            	<normal><%= job.location %></normal>
 	            </h5>
-	            <p class="light-gray"><%= job.description.slice!(0, 120) %> 
-	            	<% if job.description.length > 120 %>
+	            <p class="light-gray"><%= job.description.slice!(0, 105) %> 
+	            	<% if job.description.length > 105 %>
 	            		...
 	            	<% end %>
 	            </p>
@@ -41,16 +54,17 @@
 	            	%>
 	            </ul>
 	          </div>
-	          <%= link_to 'How to Apply', '', :class => 'btn btn-u-mini pull-right' %>
+	          <%#= link_to 'How to Apply', '', :class => 'btn btn-u-mini pull-right' %>
 		      </div>
 		    </div><!-- Row Fliud for each Job-->
+		    <%= "<hr>".html_safe if i != @jobs.length-1 %>
       <% end %>
     </div><!-- Job List Pane -->
-    <div class="span4 sidebar">
+    <div class="sidebar">
     	<br>
 			<p><%= link_to "POST A JOB", new_job_path, :class => "btn-u btn-large" %></p>
 			<br>
-			<p class="text-left light-gray" style="margin-left: 50px">250$ for 30 days</p>
+			<p class="text-center light-gray">250$ for 30 days</p>
 			<%= render :partial => "common/search_form" %>
 	    </div><!-- Right Side Bar -->
     </div>
@@ -60,10 +74,14 @@
 
 <script type="text/javascript">
   $(function(){
-    $.fn.formLabels();
+    // $.fn.formLabels();
     $("#search-form").submit(function(){
       var formVal = $("form").serialize();
       parent.$("#default div.results").html(formVal);
-    })
+    });
+
+    $('.selectpicker').selectpicker({
+      'selectedText': 'cat'
+    });
   });
 </script>
