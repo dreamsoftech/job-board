@@ -37,7 +37,7 @@ class Job < ActiveRecord::Base
   # validates_presence_of :owner
   
   # validates_format_of :description, :with => /(ruby|rails)/i, :message => "Doesn't seem to be a Ruby or Rails related job"
-  TAGS = ['Finance and Accounting',
+  TAGS = ['','Finance and Accounting',
 'Graphics Designing',
 'English Language',
 'General Programming',
@@ -136,7 +136,7 @@ class Job < ActiveRecord::Base
 'Translation Skills',
 'Internet Concepts',
 'Web Designing']
-  JOB_TYPE = %w[Full-time Part-time Contract Internship Other]
+  JOB_TYPE = ['', 'Full-time', 'Part-time', 'App Project']
   OCCUPATION = ['Web back-end', 'Web front-end', 'Web-design',
                 'QA/Testing', 'Other']
 

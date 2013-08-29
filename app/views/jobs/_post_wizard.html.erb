@@ -167,9 +167,11 @@
 <script type="text/javascript" charset="utf-8">
 	$(function() {
 		$("#job_tags").attr('multiple', '');
-		$("#job_tags").addClass('chzn-select span11');
+		$("#job_tags").addClass('chzn-select');
+		$("#job_tags").css({"width": "500px"});
 		$("#job_job_type").attr('multiple', '');
-		$("#job_job_type").addClass('chzn-select span11');
+		$("#job_job_type").addClass('chzn-select');
+		$("#job_job_type").css({"width": "500px"});
 	  $(".chzn-select").chosen(); 
 	});
 	$('#validation-form').validate({
@@ -369,7 +371,7 @@ $(function() {
 			$("#step-title").html("Step1: Create your Job");
 			$("a.btn-next").html("Continue to Step 2 to preview your Ad");
 			$("a.btn-prev").addClass("hide");
-			$(".wizard-actions").removeClass("hide");
+			$(".wizard-actions").addClass("hide");
 		}
 		else if (info.step == 2)
 		{

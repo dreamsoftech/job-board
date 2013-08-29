@@ -356,7 +356,11 @@ a:hover, a:active {
 }
 
 #step1 .form input.text {
-    width: 553px;
+    width: 500px;
+}
+#step1 #job_tags_chzn
+{
+  width: 500px;
 }
 
 .form textarea.text {
@@ -396,7 +400,7 @@ label.inner {
 div#description
 {
   border: 1px solid #999;
-  width: 535px;
+  width: 500px;
 }
 
 input[type="radio"], input[type="checkbox"] {
