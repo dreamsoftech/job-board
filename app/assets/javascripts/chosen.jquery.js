@@ -891,7 +891,7 @@
           this.search_field.val("");
 
           item.selected = true;
-          item.disabled = true;
+          item.disabled = false;
           item.empty = false;
 
           this.results_data.push(item);

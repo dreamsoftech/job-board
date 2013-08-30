@@ -13,8 +13,9 @@
 			</div>
 
 			<div class="field">
-			<%= f.label :tags, 'Technology Keys' %>
-		  <%= f.select :tags, options_for_select(Job::TAGS.map.with_index { |m, i| [m, i] }) %>
+			<%= f.label :tech_skills, 'Technology Keys' %>
+		  <%= select_tag :tech_skills, options_for_select(Job::TAGS.map.with_index { |m, i| [m, i] }) %>
+		  <%= f.hidden_field :tags %>
 		  	<div class="example-tags blog-item">
 					<span class="pull-left">Examples: </span>		  		
          	<ul class="unstyled inline blog-tags pull-left">
@@ -43,7 +44,7 @@
 			<%= f.label :company_logo, "Logo" %>
 	    <div class="input-append">
 		    <input class="span7" id="logo" type="text" placeholder="No file selected">
-		    <button class="btn" type="button">Choose File</button>
+		    <button class="btn" type="button" onclick="$('#job_company_logo').click();">Choose File</button>
 	    </div>
 			<%= f.file_field :company_logo, :class => "text hide", :placeholder => "No file selected"%>
 			</div>
@@ -128,13 +129,12 @@
 
 <script type="text/javascript" charset="utf-8">
 	$(function() {
-		$("#job_tags").attr('multiple', '');
-		$("#job_tags").addClass('chzn-select');
-		$("#job_tags").css({"width": "500px"});
-		$("#job_job_type").attr('multiple', '');
-		$("#job_job_type").addClass('chzn-select');
+		$("#tech_skills").attr('multiple', '');
+		$("#tech_skills").addClass('chzn-select');
+		$("#tech_skills").css({"width": "500px"});
+		$("#job_job_type").addClass('selectpicker');
 		$("#job_job_type").css({"width": "500px"});
-	  $(".chzn-select").chosen({no_results_text: "Oops, nothing found!", max_selected_options: 5}); 
+	  $(".chzn-select").chosen({no_results_text: "Oops, nothing found!", max_selected_options: 5, placeholder:"c#, java, c++,..."}); 
 
   	$('#input-description-div').css({'height':'200px'}).ace_wysiwyg({
 			toolbar_place: function(toolbar) {
@@ -158,6 +158,10 @@
 		});
 	});
 
+	$('#job_company_logo').on('change', function(evt){
+		$("#logo").val($(this).val());
+	});
+
 	$('#new_job').validate({
 		errorElement: 'span',
 		errorClass: 'help-inline',
@@ -165,7 +169,6 @@
 		rules: {
 			'job[title]': {
 				required: true,
-				number: true
 			},
 			"job[location]": {
 				required: true,
@@ -212,22 +215,9 @@
 		},
 
 		errorPlacement: function (error, element) {
-			if(element.is(':checkbox') || element.is(':radio')) {
-				var controls = element.closest('.controls');
-				if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
-				else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-			}
-			else if(element.is('.select2')) {
-				error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-			}
-			else if(element.is('.chzn-select')) {
-				error.insertAfter(element.siblings('[class*="chzn-container"]:eq(0)'));
-			}
-			else error.insertAfter(element);
+			
 		},
 
-		submitHandler: function (form) {
-		},
 		invalidHandler: function (form) {
 		}
 	});

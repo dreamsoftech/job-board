@@ -24,13 +24,15 @@ class Job < ActiveRecord::Base
   attr_accessor :deadline_forever
   attr_accessible :title, :job_type, :tags, :occupation, :company_name, :company_logo, :url, :location, :description, :apply_information, :highlighted, :payment_method, :card_number, :ccvn, :expire_date, :zipcode
 
+  has_attached_file :company_logo, :styles => { :medium => "300x300>", :thumb => "100x100>" }, 
+  :default_url => "/images/:style/missing.png", path: ":rails_root/public/upload/:class/:attachment/:style/:filename"
+
   extend Searchable
   searchable_by :title, :job_type, :tags, :company_name, :url, :location, :description, :apply_information
   
   validates_presence_of :title
   validates_presence_of :job_type
   validates_presence_of :company_name
-  # validates_presence_of :occupation
   validates_presence_of :location
   validates_presence_of :description
   validates_presence_of :apply_information

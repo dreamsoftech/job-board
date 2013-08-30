@@ -1,4 +1,4 @@
-<%= form_for @job do |f| %>
+<%= simple_form_for @job, html: { multipart: true } do |f| %>
 <div class="widget-body">
 	<div class="widget-main">
 		<div class="row-fluid">
@@ -73,21 +73,24 @@ $(function() {
 				$('#url')					.html($('#job_url').val());
 				$('#description')	.html($('#input-description-div').html());
 				$('#apply_information')	.html($('#job_apply_information').val());
-				
-				var all_tags = new Array();
-				<% Job::TAGS.each do |j| %>
-					all_tags.push("<%= j %>");
-				<% end %>
+				$('#job_description').val($('#input-description-div').html());
 
-				var tags = $('#job_tags').val();
+				var tags = new Array();
 				var tag_captions = "";
+				$("li.search-choice").each(function( index ) 
+				{
+					tags.push($(this).text());
+				});
+
 				for (var i = 0; i < tags.length; i++)
 				{
-					var tag_captions = tag_captions + "<li><a>"+all_tags[parseInt(tags[i])-1]+"</a></li>";
+					var tag_captions = tag_captions + "<li><a>"+tags[i]+"</a></li>";
 				}
+				$('#job_tags').val(tags.join(','));
 				$('#tags')	.html(tag_captions);
 				$('.wizard-actions').removeClass('hide');
 			}
+
 			if (info.step == 2)
 			{
 				$("#step-title").html("Step3: Publish your Ad");

@@ -27,16 +27,6 @@ class JobsController < ApplicationController
   end
 
   def create
-    tags = params[:job][:tags]
-    tag_names = Array.new
-    if tags.size == 1
-      tag_names.push Job::TAGS[tags.to_i]
-    else
-      tags.each do |t|
-        tag_names.push Job::TAGS[t]
-      end
-    end
-    params[:job][:tags] = tag_names.join(",")
     @job = Job.new(params[:job])
 
     if @job.save

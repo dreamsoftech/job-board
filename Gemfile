@@ -23,6 +23,8 @@ gem 'devise', '~>2.1.3'
 gem 'mysql2'
 gem 'simple_form'
 
+gem "paperclip", "~> 3.0"
+
 gem "babosa"
 gem "rails_autolink"
 
