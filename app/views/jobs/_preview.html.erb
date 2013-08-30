@@ -22,14 +22,12 @@
 		  	<h5>Apply for this position</h5>
 		  	<p id="apply_information"></p>
 		  </div>
-		  <br>
-		  <br>
-		  <div>
+		  <div style="margin-bottom:30px;">
 			  <a class="btn-u btn-lightblue btn-medium" onclick="$('.btn-next').click();">
 					Continue to Step 3 to publish your ad
 				</a>
 				&nbsp;or 
-				<a onclick="$('#step2.btn-prev').click();" class="gray">
+				<a onclick="$('.btn-prev').click();" class="gray">
 					<img src="/assets/back-arrow.png"/>
 					Make Changes
 				</a>
@@ -39,18 +37,3 @@
     </div>
 	</div>
 </div>
-
-<!-- 			<% if @job.owned_by?(current_user) %>
-			 	<%= t("job.deadline") %>: <%= @job.deadline || t("job.deadline_forever") %>
-			 	<span class="manage">
-			 	<%= link_to t(:edit), edit_job_path(@job), :class => "edit" %>	
-			 	<% if @job.closed? %>
-			 		<%= link_to t(:open), open_job_path(@job), :confirm => t(:are_you_sure), :method => :put, :class => "open" %>
-			 	<% else %>
-			 		<%= link_to t(:close), close_job_path(@job), :confirm => t(:are_you_sure), :method => :put, :class => "close" %>
-			 	<% end %>	
-			 	<%= link_to t(:delete), job_path(@job), :confirm => t(:are_you_sure), :method => :delete, :class => "delete" %>
-			 	</span>	
-			<% elsif @job.deadline %>
-			 	<%= t("job.deadline") %>: <%= @job.deadline %>
-			<% end %> -->

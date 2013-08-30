@@ -397,10 +397,11 @@ label.inner {
     position: static;
 }
 
-div#description
+#input-description-div
 {
   border: 1px solid #999;
   width: 500px;
+  overflow: auto;
 }
 
 input[type="radio"], input[type="checkbox"] {

@@ -1,9 +1,7 @@
 <div class="row-fluid">
 	<div class="span8">
 		<div id="new-job-payment" class="form">
-			<h3>Step3: Publish your Ad</h3>
-			<hr>
-
+			<p class="ft22">Enter your billing information Secure</p>
 			<div class="field">
 			<%= f.label :card_number, 'Card Number' %>
 			<%= f.text_field :card_number, :class => "text" %>
@@ -29,7 +27,6 @@
 		</div> <!-- #new-job-payment div end -->
 	</div><!-- span8 end -->
 </div><!-- row-fluid end -->
-
 <div class="row-fluid">
 	<div class="span11 alert apply-info">
 		<h4 style="color:#000">Your ad is $ 400 and it will run for 30 days starting right now</h4>
@@ -39,9 +36,11 @@
 		<button type="submit" class="btn-u btn-lightblue btn-medium">
 			Please Order And Publish your Ad
 		</button>
-		 or 
-		<a class="">
-			&gt;&gt; Make Changes
+		 or
+		<a onclick="$('.btn-prev').click()" class="gray">
+			<img src="/assets/back-arrow.png"/>
+			Make Changes
 		</a>
 		<br>
 	</div><!-- Highlight guide -->
+</div>

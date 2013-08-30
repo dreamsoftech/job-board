@@ -1,76 +1,83 @@
 <div class="row-fluid">
 	<div class="span8">
 		<div id="new-job-post" class="form">
-			<% if @job.errors.any? %>
-			<div id="error_explanation">
-				<h3><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h3>
-				<ul>
-					<% @job.errors.full_messages.each do |msg| %>
-		  		<li><%= msg %></li>
-					<% end %>
-				</ul>
-			</div>
-			<% end %>
-			<h3>Step1: Create your Job</h3>
-			<hr>
-
+			<p class="ft22">Basic Info</p>
 			<div class="field">
 			<%= f.label :title, t("job.title") %>
-			<%= f.text_field :title, :class => "text" %>
+			<%= f.text_field :title, :class => "text span11", required: true %>
 			</div>
 			
 			<div class="field">
 			<%= f.label :location, t("job.location") %>
-			<%= f.text_field :location, :class => "text" %>
+			<%= f.text_field :location, :class => "text span11", required: true %>
 			</div>
 
 			<div class="field">
-			<%= f.label :tags, t("job.tags") %>
-			<% i = 0 %>
-		  <%= f.select :tags, options_for_select(Job::TAGS.map { |m| [m, i=i+1] }) %>
+			<%= f.label :tags, 'Technology Keys' %>
+		  <%= f.select :tags, options_for_select(Job::TAGS.map.with_index { |m, i| [m, i] }) %>
+		  	<div class="example-tags blog-item">
+					<span class="pull-left">Examples: </span>		  		
+         	<ul class="unstyled inline blog-tags pull-left">
+          	<li><a href="#">Java</a></li>
+          	<li><a href="#">C++</a></li>
+          	<li><a href="#">Titanium</a></li>
+          	<li><a href="#">C#</a></li>
+          </ul>
+        </div>
 			</div>
 
 			<div class="field">
 			<%= f.label :job_type, t("job.type") %>
-			<% i = 0 %>
-		  <%= f.select :job_type, options_for_select(Job::JOB_TYPE.map { |m| [m, i=i+1] }) %>
+		  <%= f.select :job_type, options_for_select(Job::JOB_TYPE.map.with_index { |m, i| [m, i] }) %>
 			</div>
 
 			<hr>
-			<h3>About your company</h3>
+			<p class="ft22">About your company</p>
 
 			<div class="field">
 			<%= f.label :company_name, t("job.company_name") %>
-			<%= f.text_field :company_name, :class => "text" %>
+			<%= f.text_field :company_name, :class => "text", required: true %>
 			</div>
 
 			<div class="field">	
-			<%= f.label :company_logo, t("job.company_logo") %>
-			<%= f.file_field :company_logo, :class => "text" %>
+			<%= f.label :company_logo, "Logo" %>
+	    <div class="input-append">
+		    <input class="span7" id="logo" type="text" placeholder="No file selected">
+		    <button class="btn" type="button">Choose File</button>
+	    </div>
+			<%= f.file_field :company_logo, :class => "text hide", :placeholder => "No file selected"%>
 			</div>
 
 			<div class="field">
-			<%= f.label :url, "Company URL" %>
-			<%= f.text_field :url, :class => "text" %>
+			<%= f.label :url, "URL" %>
+			<%= f.text_field :url, :class => "text", required: true %>
 			</div>
 
 			<hr>
-			<h3>About your job</h3>
-<!-- 			<div class="field">
-			<%= f.label :occupation, t("job.occupation") %>
-				<% Job::OCCUPATION.each do |o| %>
-		      <%= f.radio_button :occupation, o %> <%= f.label :occupation, o, :value => o, :class => "inline" %>
-				<% end %>
+			<p class="ft22">About your job</p>		
+			<div class="row-fluid">
+				<h5>Description</h5>
+				<%= f.hidden_field :description, :class => "text" %>
+				<div class="widget-box">
+					<div class="widget-header widget-header-small">
+						<div class="widget-toolbar">
+						</div>
+					</div>
+
+					<div class="widget-body">
+						<div class="widget-main no-padding">
+							<div class="wysiwyg-editor span11" id="input-description-div"></div>
+						</div>
+					</div>
+				</div>
 			</div>
- -->			
-			<div class="field">
-			<%= f.label :description, t("job.description") %>
-			<%= f.text_area :description, :class => "text" %>
-			</div>
-			
-			<div class="field">
-			<%= f.label :apply_information, t("job.apply_information") %>
-			<%= f.text_area :apply_information, :class => "text" %>
+			<br>
+			<div class="row-fluid">
+				<h5>How do people apply for this job</h5>
+				<p class="gray">
+					Example: Send resume to Jon@company.com or Apply at http://company.com/jobs
+				</p>
+				<%= f.text_area :apply_information, :class => "text", required: true %>
 			</div>
 		</div> <!-- #new-job-post div end -->
 	</div><!-- span8 end -->
@@ -94,45 +101,89 @@
 		<br>
 		<label>
 			<%= f.check_box :highlighted %>
-			<strong>Yes, Highlight my ad</strong> for only $25.
+			<strong>1 - Yes, Highlight my ad</strong> for only $50.
 		</label>
+		<label>
+			<%= f.check_box :highlighted %>
+			<strong>2 - Tweet your listing $25</strong>
+		</label>
+		<label>
+			<%= f.check_box :highlighted %>
+			I will create text later.  Note highlighting your listing will last for the full 30 days the listing is live.
+		</label>
+		
 	</div><!-- Highlight guide -->
 	<div class="span4">
 		<img src="/assets/highlight-guide.jpg" />
 	</div><!-- Hightlight Image Image Area -->
 </div>
-
-<%= content_for :scripts do %>
+<div class="row-fluid">
+	<br><br>
+	<div style="clear: both;">
+		<a class="btn-u btn-lightblue btn-medium" onclick="$('.btn-next').click();">
+			Continue to Step 2 to previe your ad
+		</a>
+	</div>
+</div>
 
 <script type="text/javascript" charset="utf-8">
 	$(function() {
 		$("#job_tags").attr('multiple', '');
-		$("#job_tags").addClass('chzn-select span11');
+		$("#job_tags").addClass('chzn-select');
+		$("#job_tags").css({"width": "500px"});
 		$("#job_job_type").attr('multiple', '');
-		$("#job_job_type").addClass('chzn-select span11');
-	  $(".chzn-select").chosen(); 
+		$("#job_job_type").addClass('chzn-select');
+		$("#job_job_type").css({"width": "500px"});
+	  $(".chzn-select").chosen({no_results_text: "Oops, nothing found!", max_selected_options: 5}); 
+
+  	$('#input-description-div').css({'height':'200px'}).ace_wysiwyg({
+			toolbar_place: function(toolbar) {
+				return $(this).closest('.widget-box').find('.widget-header').prepend(toolbar);
+			},
+			toolbar:
+			[
+				'bold',
+				{name:'italic'},
+				'strikethrough',
+				'underline',
+				null,
+				'insertunorderedlist',
+				'insertorderedlist',
+				null,
+				'justifyleft',
+				'justifycenter',
+				'justifyright'
+			],
+			speech_button:false
+		});
 	});
-	$('#validation-form').validate({
+
+	$('#new_job').validate({
 		errorElement: 'span',
 		errorClass: 'help-inline',
-		focusInvalid: false,
+		focusInvalid: true,
 		rules: {
-			job_title: {
+			'job[title]': {
 				required: true,
-				phone: 'required'
+				number: true
 			},
-			job_location: {
+			"job[location]": {
+				required: true,
+			},
+			"job[url]": {
 				required: true,
 				url: true
 			},
-			job_company_name: {
+			"job[company_name]": {
 				required: true
 			},
-			job_description: {
+			"job[description]": {
+				required: true
+			},
+			"job[apply_information]": {
 				required: true
 			}
 		},
-
 		messages: {
 			email: {
 				required: "Please provide a valid email.",
@@ -152,7 +203,7 @@
 		},
 
 		highlight: function (e) {
-			$(e).closest('.control-group').removeClass('info').addClass('error');
+			//$(e).closest('.control-group').removeClass('info').addClass('error');
 		},
 
 		success: function (e) {
@@ -181,4 +232,3 @@
 		}
 	});
 </script>
-<% end %>

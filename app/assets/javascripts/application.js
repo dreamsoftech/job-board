@@ -4,7 +4,7 @@
 //= require jquery-2.0.3.min
 //= require jquery_ujs
 //= require bootstrap
-//= require chosen.jquery.min
+//= require chosen.jquery
 //= require fuelux/fuelux.wizard.min
 //= require jquery.validate.min
 //= require bootstrap-select
