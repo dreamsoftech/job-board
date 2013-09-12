@@ -1,57 +1,45 @@
-<div class="job-content">
-	<div class="row-fluid">
-		<div class="span9">
-			<h2><%= @job.title %></h2>
-			<p class="hour pull-left light-gray"><%= @job.elapsed %> ago</p>
-			<br>
-			<h5>
-		  	<strong><%= @job.company_name %></strong> - 
-		  	<normal><%= @job.location %></normal>
-		  </h5>
-		  <p><%= link_to @job.url, @job.url %></p>
-		  <div class="pull-left blog-page blog-item">
-		   	<ul class="unstyled inline blog-tags pull-left">
-		    	<%
-		    	unless @job.tags.nil?
-       			tags = @job.tags.split(',')
-       		%>
-       		<% tags.each do |t| %>
-        		<li><a href="#"><%= t %></a></li>
-        	<% 
-        		end 
-        	end
-        	%>
-		    </ul>
-		  </div>
-		  
-		  <br><br><br>
-		  <p>
-		  	<%= @job.description.gsub("\n", "<br>").html_safe unless @job.description == "" %>
-		  </p>
+<%#= render_shareable :buttons => ['twitter', 'facebook', 'linkedin'] %>
+<div class="row-fluid">
+	<div class="span9">
+		<div class="row-fluid">
+			<div class="span8">
+				<h2><%= @job.title %></h2>
+				<p class="hour light-gray"> <%= @job.elapsed %> ago</p>
+				<h4>
+			  	<strong><%= @job.company_name %></strong> - 
+			  	<normal><%= @job.location %></normal>
+			  </h4>
 
-		  <div class="alert apply-info">
-		  	<h5>Apply for this position</h5>
-		  	<p><%= @job.apply_information.gsub("\n", "<br>").html_safe unless @job.apply_information == "" %></p>
-		  </div>
-<!-- 			<% if @job.owned_by?(current_user) %>
-			 	<%= t("job.deadline") %>: <%= @job.deadline || t("job.deadline_forever") %>
-			 	<span class="manage">
-			 	<%= link_to t(:edit), edit_job_path(@job), :class => "edit" %>	
-			 	<% if @job.closed? %>
-			 		<%= link_to t(:open), open_job_path(@job), :confirm => t(:are_you_sure), :method => :put, :class => "open" %>
-			 	<% else %>
-			 		<%= link_to t(:close), close_job_path(@job), :confirm => t(:are_you_sure), :method => :put, :class => "close" %>
-			 	<% end %>	
-			 	<%= link_to t(:delete), job_path(@job), :confirm => t(:are_you_sure), :method => :delete, :class => "delete" %>
-			 	</span>	
-			<% elsif @job.deadline %>
-			 	<%= t("job.deadline") %>: <%= @job.deadline %>
-			<% end %> -->
-			</p>
+			  <p><%= link_to @job.url, @job.url %></p>
+			  <div class="pull-left blog-page blog-item">
+			   	<ul class="unstyled inline blog-tags pull-left">
+			    	<%= show_tags(@job) %>
+			    </ul>
+			  </div>
+			</div>
+			<div class="span4">
+				<%= image_tag @job.company_logo.url(:medium), :style => "margin-top:65px;" %>
+			</div>
 		</div>
-    <div class="social">
-      <div class="fb-like" data-href="<%= job_url(@job) %>" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="segoe ui"></div>
-      <g:plusone href="<%= job_url(@job) %>" size="Medium"></g:plusone>
-    </div>
+	  <br><br><br>
+	  <p>
+	  	<%= @job.description.gsub("\n", "<br>").html_safe unless @job.description == "" %>
+	  </p>
+
+	  <div class="alert apply-info">
+	  	<h5>Apply for this position</h5>
+	  	<p>
+	  		<%= @job.apply_information.gsub("\n", "<br>").html_safe unless @job.apply_information == "" %>
+	  	</p>
+	  </div>
+	</div>
+	<div class="span3 share-with-social">
+		<%= render_shareable buttons: ['facebook', 'twitter', 'linkedin'], :url=> request.original_url, :facebook=> {:url=> 'http://demo.com'} %>
+		<p><img src="/assets/social/facebook.png"><a>Share this job on facebook</a></p>
+		<p><img src="/assets/social/twitter.png"><a>Tweet this</a></p>
+		<p><img src="/assets/social/linkedin.png"><a>Share this job on linkedin</a></p>
+		<p><img src="/assets/social/message.png">
+			<%= link_to "Tell a friend", "mailto:?body=Job hiring&subject=You" %>
+		</p>
 	</div>
 </div>

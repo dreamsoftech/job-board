@@ -32,6 +32,7 @@ a.read-more:hover {
 /*Buttons
 ------------------------------------*/
 .btn-u {
+	display: inline-block;
 	color: #ffffff !important;
 	background: #fe7d1a;
 	font-weight: bold;

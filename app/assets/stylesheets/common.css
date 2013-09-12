@@ -302,7 +302,8 @@ a:hover, a:active {
 -----------------------------------------------------------------------------*/
 
 .joblist {
-    width: 100%;
+    width: 870px;
+    float: left;
 }
 
 .joblist th, .joblist td {
@@ -461,7 +462,7 @@ input[type="radio"], input[type="checkbox"] {
     right: 20px;
     top: 3.8em;
 }
-
+/*
 .social{
   
    width: 170px;
@@ -490,7 +491,7 @@ input[type="radio"], input[type="checkbox"] {
 .social .fb-like{
     width: 70px;
 }
-
+*/
 
 
 .job-content .job-info {
@@ -768,13 +769,6 @@ button{
     margin: 6px 10px;
 }
 
-.rss
-{
-    padding: 4px 8px;
-    font-size: 18px;
-    border-radius: 5px;
-}
-
 .hour
 {
     font-size: 12px;
@@ -787,6 +781,14 @@ button{
     color: #333;
     border: none;
 }
+
+.rss
+{
+    padding: 4px 8px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
 
 /* Job List
 -------------------------------------------*/
@@ -808,6 +810,7 @@ button{
     clear: both;
 }
 
+
 /* Sidebar
   ----------------------------------------*/
 .sidebar
@@ -816,15 +819,27 @@ button{
   float: right;
   margin-left:30px !important;
 }
-.sidebar .btn-large
+.sidebar .post-job-btn
 {
-    padding: 15px 80px;
+  padding: 15px 0;
+  font-size: 16px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 45px;
 }
 
+.share-with-social img
+{
+  margin-right: 20px;
+}
+.share-with-social a
+{
+  font-size: 14px;
+}
 #keyword
 {
   width: 253px;
-  height: 24px;
+  height: 21px;
   border-radius: 0px;
 }
 
@@ -999,4 +1014,8 @@ button{
 .wysiwyg-toolbar.btn-toolbar
 {
   display: inline-block;
+}
+
+#admin a {
+  color: black;
 }

@@ -1,0 +1,35 @@
+<div class="container">
+	<% @jobs.each_with_index do |job, i| %>
+		<div class="row-fluid <%= 'apply-info' if job.highlighted == true %>">
+			<div class="new-tag pull-left">
+				<%= link_to 'NEW', '', :class => 'btn btn-u-mini' if job.elapsed_date < 6%>
+			</div>
+      <div class="span11 booking-blocks">
+        <div style="overflow:hidden;">
+        	<h4>
+        		<%= link_to job.title, job_path(job), :style => 'float: left;' %>
+        		<span class="hour pull-right light-gray"><%= job.elapsed %> ago</span>
+        	</h4>
+        	<br>
+          <h5>
+          	<strong><%= job.company_name %> - </strong>
+          	<normal><%= job.location %></normal>
+          </h5>
+          <% description = strip_tags(job.description) %>
+          <p class="light-gray"><%= description.slice!(0, 105) %> 
+          	<% if description.length > 105 %>
+          		...
+          	<% end %>
+          </p>
+        </div>
+        <div class="pull-left blog-page blog-item">
+         	<ul class="unstyled inline blog-tags pull-left">
+          	<%= show_tags(job) %>
+          </ul>
+        </div>
+        <%#= link_to 'How to Apply', '', :class => 'btn btn-u-mini pull-right' %>
+      </div>
+    </div><!-- Row Fliud for each Job-->
+    <%= "<hr>".html_safe if i != @jobs.length-1 %>
+  <% end %>
+</div>

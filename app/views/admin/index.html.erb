@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row-fluid" id="admin">
+    <h3>Posted Jobs</h3>
+    <div class="span12">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Name of Contact</th>
+            <th>Email</th>
+            <th>Created</th>
+            <th>Live or Expired</th>
+            <th>Copy of Invoice</th>
+            <th>Job Title</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @jobs.each do |job| %>
+          <tr>
+            <td><%= job.company_name %></td>
+            <td><%= job.url %></td>
+            <td><%#= job.company_email %></td>
+            <td><%= job.created_at.to_date %></td>
+            <td></td>
+            <td></td>
+            <td><%= job.title %></td>
+            <td>
+              <%= link_to("<icon class='icon-remove'>".html_safe, admin_path(job), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') %>
+              <%= link_to("<icon class='icon-pause'>".html_safe, admin_path(job), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') %>
+              <%= link_to("<icon class='icon-play'>".html_safe, admin_path(job), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') %>
+              <%= link_to("<icon class='icon-edit'>".html_safe, job_path(job), :class => 'btn btn-mini') %>
+              <%= link_to("Refund".html_safe, admin_path(job), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

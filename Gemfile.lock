@@ -187,6 +187,9 @@ GEM
       rubyzip
     seo_helper (1.0.1)
     settingslogic (2.0.8)
+    shareable (0.0.2)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     simple_form (2.1.0)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -264,6 +267,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   seo_helper
   settingslogic
+  shareable
   simple_form
   simplecov
   sqlite3

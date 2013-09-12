@@ -24,6 +24,8 @@ gem 'mysql2'
 gem 'simple_form'
 
 gem "paperclip", "~> 3.0"
+gem "shareable"
+
 
 gem "babosa"
 gem "rails_autolink"

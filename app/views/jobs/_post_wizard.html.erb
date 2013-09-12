@@ -74,7 +74,7 @@ $(function() {
 				$('#description')	.html($('#input-description-div').html());
 				$('#apply_information')	.html($('#job_apply_information').val());
 				$('#job_description').val($('#input-description-div').html());
-
+				
 				var tags = new Array();
 				var tag_captions = "";
 				$("li.search-choice").each(function( index ) 
@@ -133,6 +133,22 @@ $(function() {
 			$("a.btn-prev").removeClass("hide");			
 			$(".wizard-actions").removeClass("hide");
 		}
+	});
+	$('#job_company_logo').on('change', function(input){
+		$("#logo").val($(this).val());
+		
+		evt = input.target;
+		if (evt.files && evt.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+          $('#img-logo')
+              .attr('src', e.target.result)
+              .width(150);
+      };
+
+      reader.readAsDataURL(evt.files[0]);
+  	}
 	});
 });
 </script>

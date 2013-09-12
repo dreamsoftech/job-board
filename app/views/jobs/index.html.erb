@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<div class="span9">
+		<div class="joblist">
 			<div class="row-fluid">
 				<div class="span6">
 					<strong style="font-size: 26px;">
@@ -34,24 +34,16 @@
 	            	<strong><%= job.company_name %> - </strong>
 	            	<normal><%= job.location %></normal>
 	            </h5>
-	            <p class="light-gray"><%= job.description.slice!(0, 105) %> 
-	            	<% if job.description.length > 105 %>
+	            <% description = strip_tags(job.description) %>
+	            <p class="light-gray"><%= description.slice!(0, 105) %> 
+	            	<% if description.length > 105 %>
 	            		...
 	            	<% end %>
 	            </p>
 		        </div>
 		        <div class="pull-left blog-page blog-item">
 		         	<ul class="unstyled inline blog-tags pull-left">
-	            	<%
-	            	unless job.tags.nil?
-		         			tags = job.tags.split(',')
-		         		%>
-		         		<% tags.each do |t| %>
-	            		<li><a href="#"><%= t %></a></li>
-	            	<%
-	            		end
-	            	end
-	            	%>
+	            	<%= show_tags(job) %>
 	            </ul>
 	          </div>
 	          <%#= link_to 'How to Apply', '', :class => 'btn btn-u-mini pull-right' %>
@@ -62,9 +54,8 @@
     </div><!-- Job List Pane -->
     <div class="sidebar">
     	<br>
-			<p><%= link_to "POST A JOB", new_job_path, :class => "btn-u btn-large" %></p>
-			<br>
-			<p class="text-center light-gray">250$ for 30 days</p>
+			<a href="<%= new_job_path %>" class="btn-u post-job-btn">
+				POST A JOB - <span style="font-size: 13px;">250$ for 30 days</span></a>
 			<%= render :partial => "common/search_form" %>
 	    </div><!-- Right Side Bar -->
     </div>

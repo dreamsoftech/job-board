@@ -41,7 +41,7 @@
 			</div>
 
 			<div class="field">	
-			<%= f.label :company_logo, "Logo" %>
+			<%= f.label :logo, "Logo" %>
 	    <div class="input-append">
 		    <input class="span7" id="logo" type="text" placeholder="No file selected">
 		    <button class="btn" type="button" onclick="$('#job_company_logo').click();">Choose File</button>
@@ -158,10 +158,6 @@
 		});
 	});
 
-	$('#job_company_logo').on('change', function(evt){
-		$("#logo").val($(this).val());
-	});
-
 	$('#new_job').validate({
 		errorElement: 'span',
 		errorClass: 'help-inline',
@@ -206,7 +202,8 @@
 		},
 
 		highlight: function (e) {
-			//$(e).closest('.control-group').removeClass('info').addClass('error');
+			// $(e).closest('.field').removeClass('info').addClass('error');
+			$(e).closest('.field input').focus();
 		},
 
 		success: function (e) {

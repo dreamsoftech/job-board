@@ -16,6 +16,12 @@ JobsRubyTw::Application.routes.draw do
     end
   end
   
+  resources :admin do
+    member do
+      get :dashboard
+    end
+  end
+
   root :to => "jobs#index"
 
   # See how all your routes lay out with "rake routes"
