@@ -74,6 +74,7 @@ class Job < ActiveRecord::Base
   scope :published , where(:aasm_state => "published")
   scope :online, published.where("deadline is NULL or deadline > ?", Date.today )
   scope :recent, :order => "id DESC"
+  scope :company_name_order, :order => "company_name ASC"
   
   def open
     self.aasm_state = "published"

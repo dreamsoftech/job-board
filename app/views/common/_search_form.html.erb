@@ -1,5 +1,5 @@
 <%= form_tag jobs_path, :id => "search-form", :class => "navbar-search", :method => :get do %>
-	<%= text_field_tag :keyword, "", :placeholder => 'Search: ‘Boston’, ‘Unity’, ‘Android’…' %>
+	<%= text_field_tag :keyword, session[:keyword], :placeholder => 'Search: ‘Boston’, ‘Unity’, ‘Android’…' %>
 	<div id="search-jobtype">
 		<label>
 			<%= check_box_tag :type1 %>

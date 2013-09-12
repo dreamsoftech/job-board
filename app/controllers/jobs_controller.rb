@@ -8,7 +8,10 @@ class JobsController < ApplicationController
     if params[:user_id]
       @jobs = User.find(params[:user_id]).jobs.recent
     elsif params[:keyword]
+      session[:keyword] = params[:keyword]
       @jobs = Job.online.search(params[:keyword])
+    elsif session[:keyword]
+      @jobs = Job.online.search(session[:keyword])
     else
       @jobs = Job.online.recent
     end
