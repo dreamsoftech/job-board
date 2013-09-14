@@ -100,8 +100,7 @@ a:hover, a:active {
 
 #wrapper {
     margin: 0 auto;
-    width: 97%;
-    min-width: 1250px;
+    width: 1250px;
 }
 
 #container .button {
@@ -358,7 +357,7 @@ a:hover, a:active {
 }
 
 #step1 .form input.text {
-    width: 500px;
+    width: 485px;
 }
 #step1 #job_tags_chzn
 {
@@ -839,6 +838,7 @@ button{
 {
   font-size: 14px;
 }
+
 #keyword
 {
   width: 253px;

@@ -1,17 +1,18 @@
 <%= form_tag jobs_path, :id => "search-form", :class => "navbar-search", :method => :get do %>
 	<%= text_field_tag :keyword, session[:keyword], :placeholder => 'Search: ‘Boston’, ‘Unity’, ‘Android’…' %>
+	<%= hidden_field_tag :sortby %>
 	<div id="search-jobtype">
 		<label>
-			<%= check_box_tag :type1 %>
+			<%= check_box_tag :full_time %>
 			Full-time
 		</label>
 		
 		<label>
-			<%= check_box_tag :type2 %>
+			<%= check_box_tag :part_time %>
 			Part-time
 		</label>
 		<label>
-			<%= check_box_tag :type3 %>
+			<%= check_box_tag :app_project %>
 			App Project
 		</label>
 		<br>

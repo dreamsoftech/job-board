@@ -33,11 +33,28 @@
   </div>
 </div>
 <div class="sidebar share-with-social">
-	<%= render_shareable buttons: ['facebook', 'twitter', 'linkedin'], :url=> request.original_url, :facebook=> {:url=> 'http://demo.com'} %>
-	<p><img src="/assets/social/facebook.png"><a>Share this job on facebook</a></p>
-	<p><img src="/assets/social/twitter.png"><a>Tweet this</a></p>
-	<p><img src="/assets/social/linkedin.png"><a>Share this job on linkedin</a></p>
-	<p><img src="/assets/social/message.png">
-		<%= link_to "Tell a friend", "mailto:?body=Job hiring&subject=You" %>
+	<a href="<%= new_job_path %>" class="btn-u post-job-btn">
+		POST A JOB - <span style="font-size: 13px;">250$ for 30 days</span>
+	</a>
+	<p>
+		<a 
+			onclick="
+    	window.open(
+      'https://www.facebook.com/sharer/sharer.php?p[url]='+encodeURIComponent(location.href) + '&p[title]=this', 
+      'facebook-share-dialog', 
+      'width=626,height=436'); 
+    	return false;">
+    	<img src="/assets/social/facebook.png">
+  		Share this job on facebook
+  	</a>
+  </p>
+	<p>
+		<%= link_to_twitter(@job) %>
+	</p>
+	<p>
+		<%= link_to_linkedin(@job) %>
+	</p>
+	<p>
+		<%= mail_to(@job) %>
 	</p>
 </div>

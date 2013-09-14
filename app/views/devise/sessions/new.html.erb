@@ -1,26 +1,27 @@
-<h2 class="pagetitle">Sign in</h2>
-<div class="form">
-	
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div class="field">
-	<%= f.label :email %>
-    <%= f.text_field :email %>
+<div style="width: 1150px;">
+  <div style="width: 600px; float:none; margin: 0px auto;">
+    <h2 class="pagetitle">Sign in</h2>
+    	
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {class: "form-horizontal"}) do |f| %>
+      <div class="control-group">
+        <%= f.label :email, 'Email', :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :email, required: true %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :password, 'Password', :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :password, required: true %>
+        </div>
+      </div>
+
+      <div class="controls">
+    	<%= f.submit "Sign in", :class => "btn" %>
+      </div>
+    <% end %>
+
+    <%= render :partial => "devise/shared/links" %>
   </div>
-
-  <div class="field">
-	<%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-
-  <div class="field">
-    <%= f.check_box :remember_me %> <%= f.label :remember_me, "", :class => "inner" %>
-  </div>
-
-  <div class="field">
-	<%= f.submit "Sign in", :class => "button submit" %>
-  </div>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
-
 </div>

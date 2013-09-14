@@ -31,7 +31,10 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new(params[:job])
+    payment(params[:stripe_token])
 
+    puts "--------------------------------"
+    puts @payment
     if @job.save
       redirect_to job_path(@job)
     else
@@ -84,4 +87,12 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
   end
 
+  def payment(token)
+    @transcation = Stripe::Charge.create(
+      :amount => 40000, # 400$
+      :currency => "usd",
+      :card => token,
+      :description => "Charge for apptopia job posting"
+    )
+  end
 end

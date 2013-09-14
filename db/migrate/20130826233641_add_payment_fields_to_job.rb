@@ -1,17 +1,15 @@
 class AddPaymentFieldsToJob < ActiveRecord::Migration
   def up
-  	add_column :jobs, :card_number, 		:string
-  	add_column :jobs, :payment_method, 	:string
-  	add_column :jobs, :zipcode, 				:string
-  	add_column :jobs, :expire_date, 		:datetime
-  	add_column :jobs, :ccvn, 						:string
+  	add_column :jobs, :invoice, 		   :string
+  	add_column :jobs, :customer_email, :string
+  	add_column :jobs, :customer_id, 	 :string
+  	add_column :jobs, :payment_id, 		 :string
   end
 
   def down
-		remove_column :jobs, :card_number
-		remove_column :jobs, :payment_method
-		remove_column :jobs, :zipcode
-		remove_column :jobs, :expire_date
-		remove_column :jobs, :ccvn
+		remove_column :jobs, :invoice
+		remove_column :jobs, :customer_email
+		remove_column :jobs, :customer_id
+		remove_column :jobs, :payment_id
   end
 end

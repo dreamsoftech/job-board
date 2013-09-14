@@ -22,6 +22,7 @@
   <%= render :partial => "common/facebook_js" %>
   <%= google_plusone_javascript_include_tag(:async => true) %>
   <%= yield :scripts %>
+  <%= yield :head %>
 
 </head>
 <body>

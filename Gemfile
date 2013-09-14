@@ -24,8 +24,11 @@ gem 'mysql2'
 gem 'simple_form'
 
 gem "paperclip", "~> 3.0"
-gem "shareable"
+gem "paperclip-dropbox"
 
+gem "stripe", ">= 1.7.11"
+gem "stripe_event", ">= 0.4.0"
+gem "figaro"
 
 gem "babosa"
 gem "rails_autolink"

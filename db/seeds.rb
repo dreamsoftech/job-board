@@ -7,7 +7,7 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-user = User.create!(:email => "admin@ruby.tw", :password => "rubytw", :password_confirmation => "rubytw")
+user = User.create!(:email => "admin@apptopia.com", :password => "changeme", :password_confirmation => "changeme")
 user.confirmed_at = Time.now 
 user.save
 

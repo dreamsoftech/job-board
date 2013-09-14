@@ -25,9 +25,10 @@ class Job < ActiveRecord::Base
   attr_accessible :title, :job_type, :tags, :occupation, :company_name, :company_logo, :url, :location, :description, :apply_information, :highlighted, :payment_method, :card_number, :ccvn, :expire_date, :zipcode
 
   has_attached_file :company_logo, :styles => { :medium => "150x150>" }, 
-  default_url: "/images/:style/missing.png", 
-  path: ":rails_root/public/upload/:class/:attachment/:style/:filename",
-  url: "/upload/:class/:attachment/:style/:filename"
+    storage: :dropbox,
+    dropbox_credentials: Rails.root.join("config/dropbox.yml"),
+    default_url: "/assets/missing.jpg", 
+    path: "upload/:class/:attachment/:style/:filename"
 
   extend Searchable
   searchable_by :title, :job_type, :tags, :company_name, :url, :location, :description, :apply_information
@@ -41,24 +42,9 @@ class Job < ActiveRecord::Base
   # validates_presence_of :owner
   
   # validates_format_of :description, :with => /(ruby|rails)/i, :message => "Doesn't seem to be a Ruby or Rails related job"
-  TAGS = ['','jquery',
-'sql',
-'c#',
-'python',
-'java',
-'c++',
-'objective C',
-'ruby on rails',
-'android',
-'php',
-'perl',
-'mysql',
-'jquery',
-'html5',
-'css',
-'mongo db',
-'oracle'
-]
+  TAGS = ['','jquery', 'sql', 'c#', 'python', 'java', 'c++', 'objective C', 'ruby on rails',
+          'android', 'php', 'perl', 'mysql', 'jquery', 'html5', 'css', 'mongo db', 'oracle']
+
   JOB_TYPE = ['Full-time', 'Part-time', 'App Project']
   OCCUPATION = ['Web back-end', 'Web front-end', 'Web-design',
                 'QA/Testing', 'Other']
@@ -74,7 +60,7 @@ class Job < ActiveRecord::Base
   scope :published , where(:aasm_state => "published")
   scope :online, published.where("deadline is NULL or deadline > ?", Date.today )
   scope :recent, :order => "id DESC"
-  scope :company_name_order, :order => "company_name ASC"
+  scope :order_by_company, :order => "company_name ASC"
   
   def open
     self.aasm_state = "published"

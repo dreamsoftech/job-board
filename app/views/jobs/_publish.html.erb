@@ -1,11 +1,14 @@
+
 <div style="width: 870px;">
 <div class="row-fluid">
-	<div class="span8">
+	<div class="span11">
 		<div id="new-job-payment" class="form">
 			<p class="ft22">Enter your billing information Secure</p>
+			<span id="stripe_error"></span>
+			<%= hidden_field_tag :stripe_token %>
 			<div class="field">
-			<%= f.label :card_number, 'Card Number' %>
-			<%= f.text_field :card_number, :class => "text" %>
+			<%= label_tag :card_number, 'Card Number' %>
+			<%= text_field_tag :card_number %>
 			<img src="/assets/payment_method.jpg">
 			<%= f.hidden_field :payment_method %>
 			</div>
@@ -17,13 +20,13 @@
 			</div>
 
 			<div class="field">
-			<%= f.label :zipcode, "Zip/Postal Code" %>
-			<%= f.text_field :zipcode, :class => "text" %>
+			<%= label_tag :zipcode, "Zip/Postal Code" %>
+			<%= text_field_tag :zipcode %>
 			</div>
 
 			<div class="field">
-			<%= f.label :ccvn, "CCVN#" %>
-			<%= f.text_field :ccvn, :class => "text" %>
+			<%= label :ccvn, "CCVN#" %>
+			<%= text_field_tag :ccvn %>
 		  </div>
 		</div> <!-- #new-job-payment div end -->
 	</div><!-- span8 end -->
