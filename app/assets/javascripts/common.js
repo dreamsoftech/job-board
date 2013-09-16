@@ -5,6 +5,15 @@ $(function(){
       'selectedText': 'cat'
   });
 
+	$('#order_by').on("change", function(){
+		$('#sortby').val($("#order_by option:selected").val());
+		$('#search-form').submit();
+	});
+
+	$("#search-form input[type='checkbox']").on("click", function(){
+		$('#search-form').submit();
+	})
+
 	$("#tech_skills").attr('multiple', '');
 	$("#tech_skills").addClass('chzn-select');
 	$("#tech_skills").css({"width": "500px"});
@@ -33,7 +42,7 @@ $(function(){
 		speech_button:false
 	});
 
-	$('#new_job').validate({
+	$('.job-form').validate({
 		errorElement: 'span',
 		errorClass: 'help-inline',
 		focusInvalid: true,

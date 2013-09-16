@@ -1,1 +1,5 @@
-<%= render :partial => 'form' %>
+<div style="width: 1150px; display: table;">
+	<%= simple_form_for @job, html: { :method => :put, multipart: true, :class => "job-form form-horizontal"} do |f| %>
+		<%= render :partial => 'form', locals: { f: f, action: "update" } %>
+	<% end %>
+</div>

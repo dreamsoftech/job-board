@@ -13,7 +13,6 @@
 #  description       :text
 #  apply_information :text
 #  deadline          :date
-#  user_id           :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  aasm_state        :string(255)
@@ -22,7 +21,7 @@
 class Job < ActiveRecord::Base
   
   attr_accessor :deadline_forever
-  attr_accessible :title, :job_type, :tags, :occupation, :company_name, :company_logo, :url, :location, :description, :apply_information, :highlighted, :payment_method, :card_number, :ccvn, :expire_date, :zipcode
+  attr_accessible :title, :job_type, :tags, :occupation, :company_name, :company_logo, :url, :location, :description, :apply_information, :highlighted1, :highlighted2, :highlighted3, :payment_method, :card_number, :ccvn, :expire_date, :zipcode
 
   has_attached_file :company_logo, :styles => { :medium => "150x150>" }, 
     storage: :dropbox,
@@ -48,19 +47,19 @@ class Job < ActiveRecord::Base
   JOB_TYPE = ['Full-time', 'Part-time', 'App Project']
   OCCUPATION = ['Web back-end', 'Web front-end', 'Web-design',
                 'QA/Testing', 'Other']
+  SEARCH_TERMS = ['Date Posted', "Company Name", "Job Title"]
 
   # validates_inclusion_of :job_type, :in => JOB_TYPE 
   # validates_inclusion_of :occupation, :in => OCCUPATION
-  
-  belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
 
   before_validation :set_aasm_state, :on => :create
   before_validation :set_deadline
   
   scope :published , where(:aasm_state => "published")
   scope :online, published.where("deadline is NULL or deadline > ?", Date.today )
-  scope :recent, :order => "id DESC"
-  scope :order_by_company, :order => "company_name ASC"
+  scope :order_by_date, :order => "id DESC"
+  scope :order_by_company_name, :order => "company_name ASC"
+  scope :order_by_job_title, :order => "title ASC"
   
   def open
     self.aasm_state = "published"
@@ -74,6 +73,11 @@ class Job < ActiveRecord::Base
     self.aasm_state == "closed"
   end
   
+  def expired
+    return true if elapsed_date > 30
+    return false;
+  end
+
   def to_param
     "#{self.id}-#{self.title} #{self.company_name}".to_slug.normalize.to_s
   end
@@ -99,7 +103,7 @@ class Job < ActiveRecord::Base
   end
   
   def elapsed
-    diff = Time.now - self.created_at
+    diff = Time.now - self.updated_at
     days  = (diff / 1.day).round
     hours = (diff / 1.hour).round
     mins  = (diff / 1.minute).round
@@ -117,9 +121,13 @@ class Job < ActiveRecord::Base
     elapsed_time
   end
   def elapsed_date
-    diff = Time.now - self.created_at
+    diff = Time.now - self.updated_at
     days = (diff / 1.day).round
     days
+  end
+
+  def highlighted
+    return highlighted1 | highlighted2 | highlighted3
   end
 
   private

@@ -1,19 +1,23 @@
+<%= form_tag jobs_path, :id => "search-form", :class => "navbar-search", :method => :get do %>
 <div class="joblist">
 	<div class="row-fluid">
 		<div class="span6">
 			<strong style="font-size: 26px;">
 				<%= @jobs.length %> Jobs for developers
 			</strong>
-			<p class="gray">Latest post about <%= Job.last.elapsed %> ago</p>
+			<p class="gray">Latest post about <%= Job.last.elapsed if Job.all.present? %> ago</p>
 		</div>
 		
 		<div class="span3 pull-right">
 			<br>
-			<select name="sort_by" class="selectpicker pull-right" data-width="150px">
-        <option value="date">Date Posted</option>
-        <option value="company_name">Company Name</option>
-		    <option value="job_title">Job Title</option>
-		  </select>
+      <%= select_tag :order_by, 
+        options_for_select(Job::SEARCH_TERMS.map.with_index{|i, m| [i, m]}, session[:sortby]), class: "selectpicker pull-right", data: {width: "150px"} %>
+			<!-- <select id="order_by"  data-width="150px">
+        <option value="0">Date Posted</option>
+        <option value="1">Company Name</option>
+		    <option value="2">Job Title</option>
+		  </select> -->
+      
 		</div>
 	</div>
 
@@ -58,17 +62,4 @@
 	<%= render :partial => "common/search_form" %>
   </div><!-- Right Side Bar -->
 </div>
-
-<script type="text/javascript">
-  $(function(){
-    // $.fn.formLabels();
-    $("#search-form").submit(function(){
-      var formVal = $("form").serialize();
-      parent.$("#default div.results").html(formVal);
-    });
-
-    $('.selectpicker').selectpicker({
-      'selectedText': 'cat'
-    });
-  });
-</script>
+<% end %>

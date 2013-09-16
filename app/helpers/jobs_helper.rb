@@ -46,4 +46,9 @@ module JobsHelper
 		mail_addr = content_tag :a, "<img src='/assets/social/message.png'>Tell a friend".html_safe, 
 			:href => "mailto:?#{subject}&#{body}", :target => '_blank'
 	end
+
+	def job_checked(job_type)
+		return true if job_type.nil? or job_type == 1
+		return false
+	end
 end

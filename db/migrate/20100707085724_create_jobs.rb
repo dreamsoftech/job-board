@@ -11,13 +11,9 @@ class CreateJobs < ActiveRecord::Migration
       t.text :description
       t.text :apply_information
       t.date :deadline
-
-      t.integer :user_id
       
       t.timestamps
     end
-    
-    add_index :jobs, :user_id
   end
 
   def self.down

@@ -22,14 +22,14 @@
             <td><%= job.url %></td>
             <td><%#= job.company_email %></td>
             <td><%= job.created_at.to_date %></td>
-            <td><%= job.elapsed_date > 30 ? "Expired" : "Live" %></td>
+            <td><%= job.expired ? "Expired" : "Live" %></td>
             <td></td>
             <td><%= job.title %></td>
             <td>
+              <%= link_to("<icon class='icon-refresh'>".html_safe, restart_job_path(job), method: :put, :class => 'btn btn-mini') %>
+              <%= link_to("<icon class='icon-stop'>".html_safe, job_path(job), :data => { :confirm => "Are you sure?" }, :class => 'btn btn-mini') %>
               <%= link_to("<icon class='icon-remove'>".html_safe, job_path(job), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') %>
-              <%= link_to("<icon class='icon-pause'>".html_safe, job_path(job), :data => { :confirm => "Are you sure?" }, :class => 'btn btn-mini') %>
-              <%= link_to("<icon class='icon-play'>".html_safe, job_path(job), :data => { :confirm => "Are you sure?" }, :class => 'btn btn-mini') %>
-              <%= link_to("<icon class='icon-edit'>".html_safe, job_path(job), :class => 'btn btn-mini') %>
+              <%= link_to("<icon class='icon-pencil'>".html_safe, edit_job_path(job), :class => 'btn btn-mini') %>
               <%= link_to("Refund".html_safe, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') %>
             </td>
           </tr>

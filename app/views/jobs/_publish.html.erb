@@ -4,13 +4,13 @@
 	<div class="span11">
 		<div id="new-job-payment" class="form">
 			<p class="ft22">Enter your billing information Secure</p>
-			<span id="stripe_error"></span>
+			<div class="alert alert-error" style="display:none" id="stripe_error"></div>
 			<%= hidden_field_tag :stripe_token %>
 			<div class="field">
 			<%= label_tag :card_number, 'Card Number' %>
 			<%= text_field_tag :card_number %>
 			<img src="/assets/payment_method.jpg">
-			<%= f.hidden_field :payment_method %>
+			<%#= f.hidden_field :payment_method %>
 			</div>
 			
 			<div class="field">

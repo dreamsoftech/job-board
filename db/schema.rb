@@ -23,25 +23,22 @@ ActiveRecord::Schema.define(:version => 20130830155330) do
     t.text     "description"
     t.text     "apply_information"
     t.date     "deadline"
-    t.integer  "user_id"
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
     t.string   "aasm_state"
     t.string   "tags"
-    t.string   "company_logo"
-    t.boolean  "highlighted",               :default => false
-    t.string   "card_number"
-    t.string   "payment_method"
-    t.string   "zipcode"
-    t.datetime "expire_date"
-    t.string   "ccvn"
+    t.boolean  "highlighted1",              :default => false
+    t.boolean  "highlighted2",              :default => false
+    t.boolean  "highlighted3",              :default => false
+    t.string   "invoice"
+    t.string   "customer_email"
+    t.string   "customer_id"
+    t.string   "payment_id"
     t.string   "company_logo_file_name"
     t.string   "company_logo_content_type"
     t.integer  "company_logo_file_size"
     t.datetime "company_logo_updated_at"
   end
-
-  add_index "jobs", ["user_id"], :name => "index_jobs_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

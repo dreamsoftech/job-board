@@ -2,19 +2,54 @@
 class JobsController < ApplicationController
 
   # before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_filter :find_my_job, only: [:edit, :update, :destroy, :open, :close]
+  before_filter :find_my_job, only: [:edit, :update, :destroy, :open, :close, :restart]
 
   def index
-    if params[:user_id]
-      @jobs = User.find(params[:user_id]).jobs.recent
-    elsif params[:keyword]
-      session[:keyword] = params[:keyword]
-      @jobs = Job.online.search(params[:keyword])
-    elsif session[:keyword]
-      @jobs = Job.online.search(session[:keyword])
+    job_types = Array.new
+
+    if params[:full_time]
+      job_types.push 0 
+      session[:full_time] = 1
     else
-      @jobs = Job.online.recent
+      session[:full_time] = 0
     end
+
+    if params[:part_time]
+      job_types.push 1
+      session[:part_time] = 1
+    else
+      session[:part_time] = 0
+    end
+
+    session[:sortby] = params[:sortby]
+
+    if params[:app_project]
+      job_types.push 2 
+      session[:app_project] = 1
+    else
+      session[:app_project] = 0
+    end
+
+    
+
+    case params[:sortby]
+      when "0"
+        @jobs = Job.where({:job_type => job_types}).order_by_date
+      when "1"
+        @jobs = Job.where({:job_type => job_types}).order_by_company_name
+      else
+        @jobs = Job.where({:job_type => job_types}).order_by_job_title
+    end
+
+    if params[:keyword]
+      session[:keyword] = params[:keyword]
+      @jobs = @jobs.search(params[:keyword])
+    elsif session[:keyword]
+      @jobs = @jobs.search(session[:keyword])
+    else
+      @jobs = @jobs.order_by_date
+    end
+
   end
 
   def show
@@ -45,26 +80,34 @@ class JobsController < ApplicationController
   def edit
   end
 
-  def preview
-    @job = current_user.jobs.build(params[:job])
-    @job.created_at = Time.now
-    @job.valid?
+  # def preview
+  #   @job = current_user.jobs.build(params[:job])
+  #   @job.created_at = Time.now
+  #   @job.valid?
 
-    render layout: false
-  end
+  #   render layout: false
+  # end
 
   def update
     if @job.update_attributes(params[:job])
-      redirect_to job_path(@job)
+      flash[:notice] = "Job information is successfully updated."
     else
-      render :edit
+      flash[:alert] = "Failed to update the job information."
     end
+    redirect_to "/admin"
+  end
+
+  def restart
+    @job.updated_at = Time.now
+    @job.save
+
+    redirect_to "/admin"
   end
 
   def destroy
     @job.destroy
 
-    redirect_to jobs_path
+    redirect_to "/admin"
   end
 
   def open

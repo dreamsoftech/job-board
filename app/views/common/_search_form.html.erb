@@ -1,22 +1,18 @@
-<%= form_tag jobs_path, :id => "search-form", :class => "navbar-search", :method => :get do %>
-	<%= text_field_tag :keyword, session[:keyword], :placeholder => 'Search: ‘Boston’, ‘Unity’, ‘Android’…' %>
-	<%= hidden_field_tag :sortby %>
-	<div id="search-jobtype">
-		<label>
-			<%= check_box_tag :full_time %>
-			Full-time
-		</label>
-		
-		<label>
-			<%= check_box_tag :part_time %>
-			Part-time
-		</label>
-		<label>
-			<%= check_box_tag :app_project %>
-			App Project
-		</label>
-		<br>
-	</div>
-	<a class=""><img src="/assets/rss-job-feed.png"></a>
-
-<% end %>
+<%= text_field_tag :keyword, session[:keyword], :placeholder => 'Search: ‘Boston’, ‘Unity’, ‘Android’…' %>
+<%= hidden_field_tag :sortby %>
+<div id="search-jobtype">
+	<label>
+		<%= check_box_tag :full_time, 1, job_checked(session[:full_time]) %>
+		Full-time
+	</label>
+	<label>
+		<%= check_box_tag :part_time, 1, job_checked(session[:part_time]) %>
+		Part-time
+	</label>
+	<label>
+		<%= check_box_tag :app_project, 1, job_checked(session[:app_project]) %>
+		App Project
+	</label>
+	<br>
+</div>
+<a class=""><img src="/assets/rss-job-feed.png"></a>

@@ -4,11 +4,12 @@ JobsRubyTw::Application.routes.draw do
   match '/about' => 'pages#about', :as => "about"
   
   devise_for :users
-    
+
   resources :jobs do
     member do
       put :open
       put :close
+      put :restart
     end
     collection do
       post :preview

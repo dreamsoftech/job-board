@@ -2,7 +2,7 @@
 	<%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
 <% end %>
 
-<%= simple_form_for @job, html: { multipart: true, :class => "form-horizontal"} do |f| %>
+<%= simple_form_for @job, html: { multipart: true, :class => "job-form form-horizontal"} do |f| %>
 <div class="widget-body">
 	<div class="widget-main">
 		<div class="row-fluid">
@@ -39,7 +39,7 @@
 			</div>
 			<div class="step-content" id="step-container">
 				<div class="step-pane active" id="step1">
-					<%= render partial: "form", locals: {f: f} %>
+					<%= render partial: "form", locals: {f: f, action: "create"} %>
 				</div>
 
 				<div class="step-pane" id="step2">

@@ -261,6 +261,7 @@ a:hover, a:active {
     background: #ffffff;
     margin-bottom: 40px;
     display: table;
+    width: 1250px;
 }
 
 #container-inner {
@@ -668,7 +669,7 @@ normal
 
 .light-gray
 {
-    color: #c9c9c9;
+    color: #999;
 }
 .gray
 {
@@ -1021,4 +1022,10 @@ button{
 
 #admin a {
   color: black;
+}
+
+.center
+{
+  margin: 0px auto;
+  float: none;
 }

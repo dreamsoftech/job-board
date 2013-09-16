@@ -100,15 +100,15 @@
 		<h4>Have Your Listing Highlighted. Be a Featured Listing For 3 Days</h4>
 		<br>
 		<label>
-			<%= f.check_box :highlighted %>
+			<%= f.check_box :highlighted1 %>
 			<strong>1 - Yes, Highlight my ad</strong> for only $50.
 		</label>
 		<label>
-			<%= f.check_box :highlighted %>
+			<%= f.check_box :highlighted2 %>
 			<strong>2 - Tweet your listing $25</strong>
 		</label>
 		<label>
-			<%= f.check_box :highlighted %>
+			<%= f.check_box :highlighted3 %>
 			I will create text later.  Note highlighting your listing will last for the full 30 days the listing is live.
 		</label>
 		
@@ -120,8 +120,13 @@
 <div class="row-fluid">
 	<br><br>
 	<div style="clear: both;">
-		<a class="btn-u btn-lightblue btn-medium" onclick="$('.btn-next').click();">
-			Continue to Step 2 to previe your ad
-		</a>
+		<% if action == "create" %>
+			<a class="btn-u btn-lightblue btn-medium" onclick="$('.btn-next').click();">
+				Continue to Step 2 to previe your ad
+			</a>
+		<% else %>
+			<button type="submit" class="btn-u btn-lightblue btn-medium">Save</button>
+			<button onclick="history.back()" class="btn-u btn-lightblue btn-medium">Cancel</button>
+		<% end %>
 	</div>
 </div>
