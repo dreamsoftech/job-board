@@ -89,7 +89,7 @@ class JobsController < ApplicationController
 
   def payment(token)
     @transcation = Stripe::Charge.create(
-      :amount => 40000, # 400$
+      :amount => 40000, # 40$
       :currency => "usd",
       :card => token,
       :description => "Charge for apptopia job posting"

@@ -14,6 +14,7 @@ $('#new_job').ready(function() {
       var subscription = {
         setupForm: function() {
           return $('#new_job button').click(function() {
+            if ()
             $('button[type=submit]').prop('disabled', true);
             subscription.processCard();
             return false;
