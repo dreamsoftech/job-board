@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-JobsRubyTw::Application.routes.draw do
+JobsApptopia::Application.routes.draw do
   
   match '/about' => 'pages#about', :as => "about"
   

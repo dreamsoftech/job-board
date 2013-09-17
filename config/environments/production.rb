@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-JobsRubyTw::Application.configure do
+JobsApptopia::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
@@ -72,7 +72,7 @@ JobsRubyTw::Application.configure do
    config.action_mailer.smtp_settings = YAML.load(File.read("#{Rails.root}/config/email.yml"))[Rails.env].symbolize_keys
 end
 
-JobsRubyTw::Application.config.middleware.use ExceptionNotifier,
+JobsApptopia::Application.config.middleware.use ExceptionNotifier,
   :email_prefix => "[Ruby Taiwan Exception Notifier - Production] ",
   :sender_address => %{"notifier" <ihower@gmail.com>},
   :exception_recipients => %w{ihower@gmail.com}

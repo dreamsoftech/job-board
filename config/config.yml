@@ -1,6 +1,6 @@
 defaults: &defaults
   app_name: "Apptopia Job board"
-  domain: "http://jobsrubytw.dev"    
+  domain: "http://JobsApptopia.dev"    
   facebook_app_id: 
   facebook_secret: 
   admin_emails: 

@@ -5,50 +5,53 @@ class JobsController < ApplicationController
   before_filter :find_my_job, only: [:edit, :update, :destroy, :open, :close, :restart]
 
   def index
-    job_types = Array.new
+    job_types = Array.new [0..2]
+    
+    recover_session
 
-    if params[:full_time]
+    if !params[:full_time].nil? && params[:full_time] == "1"
       job_types.push 0 
       session[:full_time] = 1
     else
       session[:full_time] = 0
     end
 
-    if params[:part_time]
+    if !params[:part_time].nil? && params[:part_time] == "1"
       job_types.push 1
       session[:part_time] = 1
     else
       session[:part_time] = 0
     end
 
-    session[:sortby] = params[:sortby]
 
-    if params[:app_project]
+    if !params[:app_project].nil? && params[:app_project] == "1"
       job_types.push 2 
       session[:app_project] = 1
     else
       session[:app_project] = 0
     end
 
-    
-
-    case params[:sortby]
+    if params[:sortby]
+      session[:sortby] = params[:sortby]
+      case params[:sortby]
       when "0"
-        @jobs = Job.where({:job_type => job_types}).order_by_date
+        order_by = "id DESC"
       when "1"
-        @jobs = Job.where({:job_type => job_types}).order_by_company_name
+        order_by = "company_name ASC"
       else
-        @jobs = Job.where({:job_type => job_types}).order_by_job_title
+        order_by = "title ASC"
+      end
     end
 
     if params[:keyword]
       session[:keyword] = params[:keyword]
-      @jobs = @jobs.search(params[:keyword])
+      @jobs = Job.order(order_by).search(params[:keyword])
     elsif session[:keyword]
-      @jobs = @jobs.search(session[:keyword])
+      @jobs = Job.order(order_by).search(session[:keyword])
     else
-      @jobs = @jobs.order_by_date
+      @jobs = Job.order(order_by)
     end
+    @jobs = @jobs.select { |job| job_types.include? job.job_type.to_i }
 
   end
 
@@ -138,4 +141,24 @@ class JobsController < ApplicationController
       :description => "Charge for apptopia job posting"
     )
   end
+
+  def recover_session
+    if params[:sortby].nil?
+      params[:sortby] = session[:sortby]
+      
+      if !session[:full_time].nil?
+        params[:full_time] = session[:full_time].to_s
+      end
+
+      if !session[:part_time].nil?
+        params[:part_time] = session[:part_time].to_s
+      end
+
+      if !session[:app_project].nil?
+        params[:app_project] = session[:app_project].to_s
+      end
+    end
+
+  end
+
 end
