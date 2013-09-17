@@ -48,7 +48,7 @@ module JobsHelper
 	end
 
 	def job_checked(job_type)
-		return true if job_type.nil? or job_type == 1
+		return true if @first or job_type == "1"
 		return false
 	end
 end
