@@ -6,7 +6,6 @@ $(function(){
   });
 
 	$('#order_by').on("change", function(){
-		$('#sortby').val($("#order_by option:selected").val());
 		$('#search-form').submit();
 	});
 

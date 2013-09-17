@@ -11,13 +11,7 @@
 		<div class="span3 pull-right">
 			<br>
       <%= select_tag :order_by, 
-        options_for_select(Job::SEARCH_TERMS.map.with_index{|i, m| [i, m]}, session[:sortby]), class: "selectpicker pull-right", data: {width: "150px"} %>
-			<!-- <select id="order_by"  data-width="150px">
-        <option value="0">Date Posted</option>
-        <option value="1">Company Name</option>
-		    <option value="2">Job Title</option>
-		  </select> -->
-      
+        options_for_select(Job::SEARCH_TERMS.map.with_index{|i, m| [i, m]}, session[:order_by]), class: "selectpicker pull-right", data: {width: "150px"} %>
 		</div>
 	</div>
 

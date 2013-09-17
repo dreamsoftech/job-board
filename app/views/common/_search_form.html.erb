@@ -1,5 +1,4 @@
 <%= text_field_tag :keyword, session[:keyword], :placeholder => 'Search: ‘Boston’, ‘Unity’, ‘Android’…' %>
-<%= hidden_field_tag :sortby %>
 <div id="search-jobtype">
 	<label>
 		<%= check_box_tag :full_time, 1, job_checked(session[:full_time]) %>

@@ -31,23 +31,25 @@ class JobsController < ApplicationController
       session[:app_project] = 0
     end
 
-    if params[:sortby]
-      session[:sortby] = params[:sortby]
-      case params[:sortby]
+    if params[:order_by]
+      session[:order_by] = params[:order_by]
+      case params[:order_by]
       when "0"
         order_by = "id DESC"
       when "1"
         order_by = "company_name ASC"
-      else
+      when "2"
         order_by = "title ASC"
       end
+    else
+      order_by = "id DESC"
     end
 
     if params[:keyword]
       session[:keyword] = params[:keyword]
-      @jobs = Job.order(order_by).search(params[:keyword])
+      @jobs = Job.search(params[:keyword], nil, {order: order_by})
     elsif session[:keyword]
-      @jobs = Job.order(order_by).search(session[:keyword])
+      @jobs = Job.search(session[:keyword], nil, {order: order_by})
     else
       @jobs = Job.order(order_by)
     end
@@ -143,8 +145,8 @@ class JobsController < ApplicationController
   end
 
   def recover_session
-    if params[:sortby].nil?
-      params[:sortby] = session[:sortby]
+    if params[:order_by].nil?
+      params[:order_by] = session[:order_by]
       
       if !session[:full_time].nil?
         params[:full_time] = session[:full_time].to_s
