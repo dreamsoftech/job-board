@@ -9,26 +9,26 @@ class JobsController < ApplicationController
     
     recover_session
 
-    if !params[:full_time].nil? && params[:full_time] == "1"
-      job_types.push 0 
-      session[:full_time] = 1
-    else
-      session[:full_time] = 0
+    if !params[:full_time].nil?
+      if params[:full_time] == "1"
+        job_types.push 0
+      end 
+      session[:full_time] = params[:full_time]
     end
 
-    if !params[:part_time].nil? && params[:part_time] == "1"
-      job_types.push 1
-      session[:part_time] = 1
-    else
-      session[:part_time] = 0
+    if !params[:part_time].nil?
+      if params[:part_time] == "1"
+        job_types.push 1
+      end
+      session[:part_time] = params[:part_time]
     end
 
 
-    if !params[:app_project].nil? && params[:app_project] == "1"
-      job_types.push 2 
-      session[:app_project] = 1
-    else
-      session[:app_project] = 0
+    if !params[:app_project].nil?
+      if params[:app_project] == "1"
+        job_types.push 2 
+      end
+      session[:app_project] = params[:app_project]
     end
 
     if params[:order_by]
@@ -148,17 +148,17 @@ class JobsController < ApplicationController
     if params[:order_by].nil?
       params[:order_by] = session[:order_by]
       
-      if !session[:full_time].nil?
-        params[:full_time] = session[:full_time].to_s
-      end
+      # if !session[:full_time].nil?
+      #   params[:full_time] = session[:full_time].to_s
+      # end
 
-      if !session[:part_time].nil?
-        params[:part_time] = session[:part_time].to_s
-      end
+      # if !session[:part_time].nil?
+      #   params[:part_time] = session[:part_time].to_s
+      # end
 
-      if !session[:app_project].nil?
-        params[:app_project] = session[:app_project].to_s
-      end
+      # if !session[:app_project].nil?
+      #   params[:app_project] = session[:app_project].to_s
+      # end
     end
 
   end
