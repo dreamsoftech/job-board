@@ -105,6 +105,7 @@ $('[data-rel=tooltip]').tooltip();
 				$('#apply_information')	.html($('#job_apply_information').val());
 				$('#job_description').val($('#input-description-div').html());
 				
+				// add tags in preview page
 				var tags = new Array();
 				var tag_captions = "";
 				$("li.search-choice").each(function( index ) 
@@ -118,6 +119,16 @@ $('[data-rel=tooltip]').tooltip();
 				}
 				$('#job_tags').val(tags.join(','));
 				$('#tags')	.html(tag_captions);
+
+				var total = 250;
+
+				if ($('#job_highlighted1').is(':checked'))
+					total += 50;
+				if ($('#job_highlighted2').is(':checked'))
+					total += 30;
+
+				$('#total').html(total);
+
 				$('.wizard-actions').removeClass('hide');
 
 				// hide job post guide section
