@@ -1,9 +1,9 @@
 xml.instruct! :xml, :version => "1.0"
 xml.rss "version" => "2.0" do
   xml.channel do
-    xml.title "Ruby Jobs in Taiwan"
+    xml.title "Ruby Jobs in Apptopia"
     xml.link jobs_url
-    xml.description "Ruby Jobs in Taiwan"
+    xml.description "Ruby Jobs in Apptopia"
  
     @jobs.each do |job|
       xml.item do

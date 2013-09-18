@@ -849,7 +849,7 @@ button{
 
 #search-jobtype
 {
-  margin: 13px 16px;
+  margin: 13px 3px;
 }
 
 #search-jobtype label
@@ -1028,4 +1028,20 @@ button{
 {
   margin: 0px auto;
   float: none;
+}
+
+
+a.rss-feed
+{
+  background: url("/assets/rss.png") no-repeat 0px 3px;
+  padding-left: 40px;
+  display: block;
+  line-height: 17px;
+  font-size: 14px;
+  color: #333;
+}
+
+a.rss-feed:hover
+{
+  color: #49ACE8;
 }

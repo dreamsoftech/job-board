@@ -5,37 +5,10 @@ class JobsController < ApplicationController
   before_filter :find_my_job, only: [:edit, :update, :destroy, :open, :close, :restart]
 
   def index
-    job_types = Array.new [0..2]
     
     recover_session
 
-    if params[:order_by].nil? && session[:order_by].nil?
-      job_types = [0, 1, 2]
-      @first = true
-    end
-
-    if !params[:full_time].nil?
-      if params[:full_time] == "1"
-        job_types.push 0
-      end 
-    end
-
-    if !params[:part_time].nil?
-      if params[:part_time] == "1"
-        job_types.push 1
-      end
-    end
-
-
-    if !params[:app_project].nil?
-      if params[:app_project] == "1"
-        job_types.push 2 
-      end
-    end
-  
-    session[:full_time] = params[:full_time]
-    session[:part_time] = params[:part_time]
-    session[:app_project] = params[:app_project]
+    extract_queries
 
     if params[:order_by]
       session[:order_by] = params[:order_by]
@@ -59,8 +32,12 @@ class JobsController < ApplicationController
     else
       @jobs = Job.order(order_by)
     end
-    @jobs = @jobs.select { |job| job_types.include? job.job_type.to_i }
+    @jobs = @jobs.select { |job| @job_types.include? job.job_type.to_i }
 
+    respond_to do |format|
+      format.html
+      format.rss { render :layout => false } #index.rss.builder
+    end
   end
 
   def show
@@ -167,6 +144,37 @@ class JobsController < ApplicationController
       end
     end
 
+  end
+
+  def extract_queries
+    @job_types = Array.new [0..2]
+
+    if params[:order_by].nil? && session[:order_by].nil?
+      @job_types = [0, 1, 2]
+      @first = true
+    end
+
+    if !params[:full_time].nil?
+      if params[:full_time] == "1"
+        @job_types.push 0
+      end 
+    end
+
+    if !params[:part_time].nil?
+      if params[:part_time] == "1"
+        @job_types.push 1
+      end
+    end
+
+    if !params[:app_project].nil?
+      if params[:app_project] == "1"
+        @job_types.push 2 
+      end
+    end
+  
+    session[:full_time] = params[:full_time]
+    session[:part_time] = params[:part_time]
+    session[:app_project] = params[:app_project]
   end
 
 end
