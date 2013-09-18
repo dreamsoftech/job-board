@@ -1,56 +1,66 @@
 <% content_for :head do %>
 	<%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
 <% end %>
+<div id="new-job-div" class="left-main-div">
+	<%= simple_form_for @job, html: { multipart: true, :class => "job-form form-horizontal"} do |f| %>
+		<div class="widget-body">
+			<div class="widget-main">
+				<div class="row-fluid">
+					<h3 id="step-title">Step 1: Create Your Job</h3>
+					<br>
+					<div id="fuelux-wizard" class="span5 hide row-fluid" data-target="#step-container">
+						<ul class="wizard-steps">
+							<li data-target="#step1" class="active">
+								<span class="step">1</span>
+								<span class="title">Create</span>
+							</li>
 
-<%= simple_form_for @job, html: { multipart: true, :class => "job-form form-horizontal"} do |f| %>
-<div class="widget-body">
-	<div class="widget-main">
-		<div class="row-fluid">
-			<h3 id="step-title">Step1: Create your Job</h3>
-			<br>
-			<div id="fuelux-wizard" class="span5 hide row-fluid" data-target="#step-container">
-				<ul class="wizard-steps">
-					<li data-target="#step1" class="active">
-						<span class="step">1</span>
-						<span class="title">Create</span>
-					</li>
+							<li data-target="#step2">
+								<span class="step">2</span>
+								<span class="title">Preview</span>
+							</li>
 
-					<li data-target="#step2">
-						<span class="step">2</span>
-						<span class="title">Preview</span>
-					</li>
+							<li data-target="#step3">
+								<span class="step">3</span>
+								<span class="title">Publish</span>
+							</li>
+						</ul>
+					</div>
+					<br><br><br>
+					<hr>
+					<div class="row-fluid wizard-actions hide">
+						<a id="next-step-btn" class="btn-u btn-lightblue btn-next btn-medium">
+							Continue to Step 3 to publish your ad
+						</a>
+						<a class="btn-prev btn-small hide gray">
+							 <img src="/assets/back-arrow.png"/>
+							 Make changes
+						</a>
+					</div>
+					<div class="step-content" id="step-container">
+						<div class="step-pane active" id="step1">
+							<%= render partial: "form", locals: {f: f, action: "create"} %>
+						</div>
 
-					<li data-target="#step3">
-						<span class="step">3</span>
-						<span class="title">Publish</span>
-					</li>
-				</ul>
-			</div>
-			<br><br><br>
-			<hr>
-			<div class="row-fluid wizard-actions hide">
-				<a id="next-step-btn" class="btn-u btn-lightblue btn-next btn-medium">
-					Continue to Step 3 to publish your ad
-				</a>
-				<a class="btn-prev btn-small hide gray">
-					 <img src="/assets/back-arrow.png"/>
-					 Make changes
-				</a>
-			</div>
-			<div class="step-content" id="step-container">
-				<div class="step-pane active" id="step1">
-					<%= render partial: "form", locals: {f: f, action: "create"} %>
+						<div class="step-pane" id="step2">
+							<%= render "preview" %>
+						</div>
+
+						<div class="step-pane" id="step3">
+							<%= render partial: "publish", :locals => { f: f } %>
+						</div>
+					</div>
 				</div>
-
-				<div class="step-pane" id="step2">
-					<%= render "preview" %>
-				</div>
-
-				<div class="step-pane" id="step3">
-					<%= render partial: "publish", :locals => { f: f } %>
-				</div>
-			</div>
-		</div>
-	</div><!--/widget-main-->
-</div><!--/widget-body-->
-<% end %>
+			</div><!--/widget-main-->
+		</div><!--/widget-body-->
+	<% end %>
+</div>
+<div class="span3 post-job-guide pull-right">
+	<h5> Why post on our Job Board?</h5>
+	<p><b>You'll target the cream of the crop.</b><br>
+	Where you post your job has a lot to do with the kind of people you'll attract. Our Job Board attracts the best because it's featured on industry-leading sites such as Signal vs. Noise, A List Apart, Zeldman.com, Kottke.org, Coudal.com, and the Ruby on Rails site. People who visit these sites value beautiful design, clean code, and high standards.</p>
+	<p><b>One of a few, not one of many.</b><br>
+	You won't have to worry about being a needle in a haystack. We charge more than other job boards to keep supply in check. There are usually less than 200 jobs on our Job Board at any one time. That means your job listing won't get lost in the shuffle like it does at other job sites. Candidates will find you.</p>
+	<p><b>Trusted by industry leaders.</b><br>
+	Industry leaders like The New York Times, CNET, Adobe, American Express, NBC, Trek, Skype, Yelp, and Facebook all use the 37signals Job Board to find the best of the best. Many of these brands come back again and again to find new candidates as their hiring needs expand.</p>
+</div>

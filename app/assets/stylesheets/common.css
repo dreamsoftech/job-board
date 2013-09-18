@@ -302,25 +302,12 @@ a:hover, a:active {
 /* Table
 -----------------------------------------------------------------------------*/
 
-.joblist {
+.left-main-div {
     width: 845px;
     float: left;
 }
 
-.joblist th, .joblist td {
-    border: 0;
-    border-bottom: 1px solid #e6ebec;
-    padding: 1em 0.5em;
-}
-
-.joblist th {
-    border-bottom: 3px solid #d2d8d9;
-    padding-bottom: 0.7em;
-    font-size: 116%;
-    text-align: left;
-}
-
-.joblist a {
+.left-main-div a {
     font-weight: bold;
 }
 
@@ -687,9 +674,10 @@ ul.blog-tags a {
     font-size:10px;
     padding:0px 7px;
     color:#ffffff;
-    background: #c9c9c9;
+    background: #bababa;
     margin:0 0px 0px 0;
     display:inline-block;
+    line-height: 17px;
     /*text-shadow:0 1px 0 #fff;*/
 }
 ul.blog-tags a:hover,
@@ -714,6 +702,25 @@ ul.blog-tags a i {
     padding: 1px 3px;
     margin-right: 2px;
     background: #f4f4f4;
+}
+
+ul.dark-tags
+{
+  font-size: 10px;
+  margin-right: 2px;
+  margin-left: 0px;
+  margin-top: 2px;
+  list-style: none;
+  cursor: pointer;
+}
+ul.dark-tags li
+{
+  padding: 0px 7px;
+  color: #fff;
+  float: left;
+  margin-right: 5px;
+  background: #aaa;
+  line-height: 17px;
 }
 
 ul.inline > li, ol.inline > li
@@ -780,18 +787,23 @@ button{
 
 .apply-info
 {
-    background-color: #edf7ff;
+    background-color: #d7ebfc;
     color: #333;
     border: none;
 }
 
+.highlighted
+{
+  color: #333;
+  background-color: #d7ebfc;
+  border: none;
+}
 .rss
 {
     padding: 4px 8px;
     font-size: 18px;
     border-radius: 5px;
 }
-
 
 /* Job List
 -------------------------------------------*/
@@ -808,6 +820,15 @@ button{
     border: 1px solid #fbeed5;
 }
 
+.post-job-guide h5
+{
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+.post-job-guide p
+{
+  margin-bottom: 15px;
+}
 .row-fluid
 {
     clear: both;
@@ -1045,3 +1066,22 @@ a.rss-feed:hover
 {
   color: #49ACE8;
 }
+
+#sort-div button
+{
+  background: none;
+  border-color: #D8D8D8;
+  box-shadow: none !important;
+  outline: 0px solid #333 !important;
+}
+
+.btn-group.open .dropdown-toggle
+{
+  
+}
+
+.bootstrap-select .btn:focus
+{
+  outline: 0px none;
+}
+

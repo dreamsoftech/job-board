@@ -1,30 +1,30 @@
 <div class="row-fluid">
 	<div class="span8">
 		<div id="new-job-post" class="form">
-			<p class="ft22">Basic Info</p>
+			<p class="ft22">Basic info</p>
 			<div class="field">
-			<%= f.label :title, t("job.title") %>
-			<%= f.text_field :title, :class => "text", required: true %>
+				<%= f.label :title, t("job.title") %>
+				<%= f.text_field :title, :class => "text", required: true %>
 			</div>
 			
 			<div class="field">
-			<%= f.label :location, t("job.location") %>
-			<%= f.text_field :location, :class => "text", required: true %>
+				<%= f.label :location, t("job.location") %>
+				<%= f.text_field :location, :class => "text", required: true %>
 			</div>
 
 			<div class="field">
-			<%= f.label :tech_skills, 'Technology Keys' %>
-		  <%= select_tag :tech_skills, options_for_select(Job::TAGS.map.with_index { |m, i| [m, i] }) %>
-		  <%= f.hidden_field :tags %>
+				<%= f.label :tech_skills, 'Key Technologies' %>
+			  <%= select_tag :tech_skills, options_for_select(Job::TAGS.map.with_index { |m, i| [m, i] }) %>
+			  <%= f.hidden_field :tags %>
 		  	<div class="blog-item">
-					<span class="pull-left">Examples: </span>		  		
-         	<ul class="inline blog-tags pull-left">
-          	<li><a href="#">Java</a></li>
-          	<li><a href="#">C++</a></li>
-          	<li><a href="#">Titanium</a></li>
-          	<li><a href="#">C#</a></li>
-          </ul>
-        </div>
+					<span class="pull-left">Examples: &nbsp;</span>		  		
+	       	<ul class="dark-tags pull-left">
+	        	<li>Java</li>
+	        	<li>C++</li>
+	        	<li>Titanium</li>
+	        	<li>C#</li>
+	        </ul>
+	      </div>
 			</div>
 
 			<div class="field">
@@ -36,22 +36,22 @@
 			<p class="ft22">About your company</p>
 
 			<div class="field">
-			<%= f.label :company_name, t("job.company_name") %>
-			<%= f.text_field :company_name, :class => "text", required: true %>
+				<%= f.label :company_name, t("job.company_name") %>
+				<%= f.text_field :company_name, :class => "text", required: true %>
 			</div>
 
 			<div class="field">	
-			<%= f.label :logo, "Logo" %>
-	    <div class="input-append">
-		    <input class="span7" id="logo" type="text" placeholder="No file selected">
-		    <button class="btn" type="button" onclick="$('#job_company_logo').click();">Choose File</button>
-	    </div>
-			<%= f.file_field :company_logo, :class => "text hide", :placeholder => "No file selected"%>
+				<%= f.label :logo, "Logo" %>
+		    <div class="input-append">
+			    <input class="span7" id="logo" type="text" placeholder="No file selected">
+			    <button class="btn" type="button" onclick="$('#job_company_logo').click();">Choose File</button>
+		    </div>
+				<%= f.file_field :company_logo, :class => "text hide", :placeholder => "No file selected"%>
 			</div>
 
 			<div class="field">
-			<%= f.label :url, "URL" %>
-			<%= f.text_field :url, :class => "text", required: true %>
+				<%= f.label :url, "URL" %>
+				<%= f.text_field :url, :class => "text", required: true %>
 			</div>
 
 			<hr>
@@ -81,39 +81,34 @@
 			</div>
 		</div> <!-- #new-job-post div end -->
 	</div><!-- span8 end -->
-	<div class="span3 post-job-guide pull-right">
-		<p>You'll target the cream of the crop.</p>
-		<p>Where you post your job has a lot to do with the kind of people you'll attract. Our Job Board attracts the best because it's featured on industry-leading sites such as Signal vs. Noise, A List Apart, Zeldman.com, Kottke.org, Coudal.com, and the Ruby on Rails site. People who visit these sites value beautiful design, clean code, and high standards.</p>
-		<p>One of a few, not one of many.</p>
-		<p>You won't have to worry about being a needle in a haystack. We charge more than other job boards to keep supply in check. There are usually less than 200 jobs on our Job Board at any one time. That means your job listing won't get lost in the shuffle like it does at other job sites. Candidates will find you.</p>
-		<p>Trusted by industry leaders.</p>
-		<p>Industry leaders like The New York Times, CNET, Adobe, American Express, NBC, Trek, Skype, Yelp, and Facebook all use the 37signals Job Board to find the best of the best. Many of these brands come back again and again to find new candidates as their hiring needs expand.</p>
-	</div>
 </div><!-- row-fluid end -->
 
 <div class="row-fluid">
 	<hr>
 	<br>
-	<h3>Get more Applicants</h3>
+	<h3>Get More Applicants</h3>
 	<div class="span7">
-		<br><br><br>
-		<h4>Have Your Listing Highlighted. Be a Featured Listing For 3 Days</h4>
 		<br>
-		<label>
+		<h4 style="line-height: 25px; font-size: 16px;">
+			For only $50 you can have your job posting highlighted.<br>
+			Highlighted ads are light blue, and stand out from other similar postings. Highlighted jobs tend to get 50% more views
+		</h4>
+		<br>
+		<label for="job_highlighted1">
 			<%= f.check_box :highlighted1 %>
-			<strong>1 - Yes, Highlight my ad</strong> for only $50.
+			<strong>Yes, highlight my ad</strong> for only $50.
 		</label>
-		<label>
+		<br>
+		<h4 style="line-height: 25px; font-size: 16px;">
+			Sometimes exposure is the key to a successful job search. Have @apptopia tweet out your job to its over 13,000 mobile focused followers. Tweeted jobs tend to get a quick spike of at least ~100 views.
+		</h4>
+		<br>
+		<label for="job_highlighted2">
 			<%= f.check_box :highlighted2 %>
-			<strong>2 - Tweet your listing $25</strong>
+			<strong>Yes, tweet my job posting</strong> for only $30
 		</label>
-		<label>
-			<%= f.check_box :highlighted3 %>
-			I will create text later.  Note highlighting your listing will last for the full 30 days the listing is live.
-		</label>
-		
 	</div><!-- Highlight guide -->
-	<div class="span4">
+	<div class="span5 pull-right">
 		<img src="/assets/highlight-guide.jpg" />
 	</div><!-- Hightlight Image Image Area -->
 </div>

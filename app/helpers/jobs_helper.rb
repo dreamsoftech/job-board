@@ -8,7 +8,7 @@ module JobsHelper
 			tags = job.tags.split(',')
 			
 			tags.each do |t|
-				tags_html += "<li><a href='#'>#{t}</a></li>"
+				tags_html += "<li><a href='#' class='tech_tag'>#{t}</a></li>"
 			end
 
 		end
@@ -63,5 +63,9 @@ module JobsHelper
 	def job_checked(job_type)
 		return true if @first or job_type == "1"
 		return false
+	end
+
+	def job_index_page
+		return true if controller.controller_name == "jobs" and params[:action] == "index"
 	end
 end

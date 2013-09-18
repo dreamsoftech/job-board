@@ -31,10 +31,14 @@
       <div class="row-fluid">
         <div class="span5 pull-left">
           <h1><a href="/">Job Board</a></h1>
-          <a id="search-results-link" class="gray" href="/">
-            <img src="/assets/back-arrow.png"/>
-            Search results
-          </a>
+          <% if job_index_page %>
+            <br>
+          <% else %>
+            <a id="search-results-link" class="gray" href="/">
+              <img src="/assets/back-arrow.png"/>
+              Search results
+            </a>
+          <% end %>
         </div>
         <div class="right span5">
             <p class="member">

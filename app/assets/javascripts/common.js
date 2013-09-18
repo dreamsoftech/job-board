@@ -9,6 +9,11 @@ $(function(){
 		$('#search-form').submit();
 	});
 
+	$('.tech_tag').on("click", function(){
+		$("#keyword"). val($(this).html());
+		$('#search-form').submit();
+	});
+
 	$("#search-form input[type='checkbox']").on("click", function(){
 		$('#search-form').submit();
 	})
@@ -87,7 +92,7 @@ $('[data-rel=tooltip]').tooltip();
 			{
 				if(!$('#new_job').valid()) return false;
 
-				$("#step-title").html("Step2: Preview your Ad");
+				$("#step-title").html("Step 2: Preview your Ad");
 				$("a.btn-next").html("Continue to Step 3 to publish your ad");
 				$("a.btn-prev").removeClass("hide");
 
@@ -109,16 +114,20 @@ $('[data-rel=tooltip]').tooltip();
 
 				for (var i = 0; i < tags.length; i++)
 				{
-					var tag_captions = tag_captions + "<li><a>"+tags[i]+"</a></li>";
+					var tag_captions = tag_captions + "<li>"+tags[i]+"</li>";
 				}
 				$('#job_tags').val(tags.join(','));
 				$('#tags')	.html(tag_captions);
 				$('.wizard-actions').removeClass('hide');
+
+				// hide job post guide section
+				$(".post-job-guide").addClass("hide");
+				$("#new-job-div").removeClass("left-main-div"); // stretch the main div
 			}
 
 			if (info.step == 2)
 			{
-				$("#step-title").html("Step3: Publish your Ad");
+				$("#step-title").html("Step 3: Publish Your Job");
 				$("a.btn-next").html("Place Order and Publish your Ad");
 				$("a.btn-prev").removeClass("hide");
 				$('.wizard-actions').addClass('hide');
@@ -128,37 +137,48 @@ $('[data-rel=tooltip]').tooltip();
 		{
 			if (info.step == 3)
 			{
-				$("#step-title").html("Step2: Publish your Ad");
+				$("#step-title").html("Step 2: Publish Your Job");
 				$("a.btn-next").html("Continue to Step 3 to publish your ad");
 				$('.wizard-actions').removeClass('hide');
 			}
 			else if (info.step == 2)
 			{
-				$("#step-title").html("Step1: Create your Job");
+				$("#step-title").html("Step 1: Create Your Job");
 				$("a.btn-next").html("Continue to Step 2 to preview your ad");
 				$("a.btn-prev").addClass("hide");
 				$(".wizard-actions").addClass("hide");
+				// hide job post guide section
+				$(".post-job-guide").removeClass("hide");
+				$("#new-job-div").addClass("left-main-div"); // stretch the content div
 			}
 		}
 	}).on('finished', function(e) {
 		
 	}).on('stepclick', function(e, info){
-		console.log(info);
 		if (info.step == 1)
 		{
-			$("#step-title").html("Step1: Create your Job");
+			$("#step-title").html("Step 1: Create Your Job");
 			$("a.btn-next").html("Continue to Step 2 to preview your Ad");
 			$("a.btn-prev").addClass("hide");
 			$(".wizard-actions").addClass("hide");
+			// hide job post guide section
+			$(".post-job-guide").removeClass("hide");
+			$("#new-job-div").addClass("left-main-div"); // stretch the main div
 		}
 		else if (info.step == 2)
 		{
-			$("#step-title").html("Step2: Preview your Ad");
+			$("#step-title").html("Step 2: Preview Your Ad");
 			$("a.btn-next").html("Continue to Step 3 to publish your Ad");
 			$("a.btn-prev").removeClass("hide");			
 			$(".wizard-actions").removeClass("hide");
+
+			// hide job post guide section
+			$(".post-job-guide").addClass("hide");
+			$("#new-job-div").removeClass("left-main-div"); // stretch the main div
 		}
 	});
+
+
 	$('#job_company_logo').on('change', function(input){
 		$("#logo").val($(this).val());
 		
