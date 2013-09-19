@@ -178,10 +178,32 @@ $('[data-rel=tooltip]').tooltip();
 
 
 	$('#job_company_logo').on('change', function(input){
-		$("#logo").val($(this).val());
-		
+	
 		evt = input.target;
 		if (evt.files && evt.files[0]) {
+			var file = evt.files[0];
+			console.log(file);
+			if(typeof file === "string") {//files is just a file name here (in browsers that don't support FileReader API)
+				if(! (/\.(jpe?g|png|gif)$/i).test(file) ) return false;
+			}
+			else {//file is a File object
+				var type = $.trim(file.type);
+				if( ( type.length > 0 && ! (/^image\/(jpe?g|png|gif)$/i).test(type) )
+						|| ( type.length == 0 && ! (/\.(jpe?g|png|gif)$/i).test(file.name) )//for android default browser!
+					) 
+				{
+					$("#file-load-result").html("Wrong file format!");
+      		$("#file-load-result").css("color", "red");
+					$("#file-load-result").fadeIn("fast");
+					return false;
+				}
+
+				// if( file.size > 110000 ) {//~100Kb
+				// 	$("#file-load-error").show("slow");
+				// 	return false;
+				// }
+			}
+
       var reader = new FileReader();
 
       reader.onload = function (e) {
@@ -189,8 +211,13 @@ $('[data-rel=tooltip]').tooltip();
               .attr('src', e.target.result)
               .width(150);
       };
+      $("#logo").val($(this).val());
 
+      $("#file-load-result").html("Success");
+      $("#file-load-result").css("color", "green");
+			$("#file-load-result").fadeIn("fast");
       reader.readAsDataURL(evt.files[0]);
+      return true;
   	}
 	});
 
