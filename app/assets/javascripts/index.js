@@ -31,7 +31,7 @@ $(function(){
     $('#search-form').submit();
   });
 
-  $('.tech_tag').on("click", function(){
+  $('#job-list').on("click", ".tech_tag", function(){
     $("#keyword"). val($(this).html());
     $('#search-form').submit();
   });
@@ -45,13 +45,12 @@ $(function(){
     $('#search-form').submit();
   })
 
-
   $("#search-form").on("ajax:success", function(e, data, status, xhr)
   {
-    console.log(xhr.responseJSON);
     var job_list = xhr.responseJSON;
 
     $("#job-list").html("");
+    $("#jobs-count").html(job_list.length + " Jobs for developers");
     for (var i = 0; i < job_list.length; i++)
     {
       job = job_list[i].job;
@@ -75,7 +74,7 @@ $(function(){
       template.find("#description").html(job.description);
       // Remove html tags
       template.find("#description").text(template.find("#description").text());
-      console.log(job);
+      
       var tags_element = template.find("#tags");
       var tags = job.tags.split(',');
       tags_element.html("");
