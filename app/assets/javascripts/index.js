@@ -7,6 +7,24 @@ $(function(){
         .replace(/[^\w-]+/g,'')
         ;
   }
+
+  function elapsed_time(updated_at)
+  {
+    var prevTime = new Date(Date.parse(updated_at));
+    var thisTime = new Date();              // now
+    var diff = thisTime.getTime() - prevTime.getTime();
+    var days = parseInt(diff / (1000*60*60*24));
+    if (days > 0)
+      return days + " days";
+
+    var hours = parseInt(diff / (1000*3600));
+    if (hours > 0)
+      return hours + " hours";
+
+    var mins = parseInt(diff / (1000 * 60));
+    return mins + " mins"
+  }
+
   var searching = false; // If app is retrieving the job data by ajax, it is true
 
   $('#order_by').on("change", function(){
@@ -51,13 +69,13 @@ $(function(){
 
       template.find("#title").html(job.title);
       template.find("#title").attr("href", "/jobs/" + to_slug(job.id + "-" + job.title + "-" + job.company_name));
-      template.find("#elapsed").html(job.elapsed + " ago");
+      template.find("#elapsed").html(elapsed_time(job.updated_at) + " ago");
       template.find("#company_name").html(job.company_name);
       template.find("#location").html(job.location);
       template.find("#description").html(job.description);
       // Remove html tags
       template.find("#description").text(template.find("#description").text());
-
+      console.log(job);
       var tags_element = template.find("#tags");
       var tags = job.tags.split(',');
       tags_element.html("");
