@@ -5,19 +5,6 @@ $(function(){
       'selectedText': 'cat'
   });
 
-	$('#order_by').on("change", function(){
-		$('#search-form').submit();
-	});
-
-	$('.tech_tag').on("click", function(){
-		$("#keyword"). val($(this).html());
-		$('#search-form').submit();
-	});
-
-	$("#search-form input[type='checkbox']").on("click", function(){
-		$('#search-form').submit();
-	})
-
 	$("#tech_skills").attr('multiple', '');
 	$("#tech_skills").addClass('chzn-select');
 	$("#tech_skills").css({"width": "500px"});

@@ -35,6 +35,7 @@ class JobsController < ApplicationController
     @jobs = @jobs.select { |job| @job_types.include? job.job_type.to_i }
 
     respond_to do |format|
+      format.json { render json: @jobs }
       format.html
       format.rss { render :layout => false } #index.rss.builder
     end

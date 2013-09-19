@@ -18,3 +18,4 @@
 //= require ace.min
 //= require common
 //= require payment
+//= require index
