@@ -32,7 +32,9 @@ class JobsController < ApplicationController
     else
       @jobs = Job.order(order_by)
     end
-    @jobs = @jobs.select { |job| @job_types.include? job.job_type.to_i }
+    unless @job_types.empty?
+      @jobs = @jobs.select { |job| @job_types.include? job.job_type.to_i }
+    end
 
     respond_to do |format|
       format.json { render json: @jobs }
@@ -146,29 +148,18 @@ class JobsController < ApplicationController
   end
 
   def extract_queries
-    @job_types = Array.new [0..2]
-
-    if params[:order_by].nil? && session[:order_by].nil?
-      @job_types = [0, 1, 2]
-      @first = true
-    end
+    @job_types = Array.new
 
     if !params[:full_time].nil?
-      if params[:full_time] == "1"
-        @job_types.push 0
-      end 
+      @job_types.push 0
     end
 
     if !params[:part_time].nil?
-      if params[:part_time] == "1"
-        @job_types.push 1
-      end
+      @job_types.push 1
     end
 
     if !params[:app_project].nil?
-      if params[:app_project] == "1"
-        @job_types.push 2 
-      end
+      @job_types.push 2 
     end
   
     session[:full_time] = params[:full_time]
