@@ -4,12 +4,12 @@
 			<p class="ft22">Basic info</p>
 			<div class="field">
 				<%= f.label :title, t("job.title") %>
-				<%= f.text_field :title, :class => "text", required: true %>
+				<%= f.text_field :title, :class => "text", required: false %>
 			</div>
 			
 			<div class="field">
 				<%= f.label :location, t("job.location") %>
-				<%= f.text_field :location, :class => "text", required: true %>
+				<%= f.text_field :location, :class => "text", required: false %>
 			</div>
 
 			<div class="field">
@@ -37,7 +37,7 @@
 
 			<div class="field">
 				<%= f.label :company_name, t("job.company_name") %>
-				<%= f.text_field :company_name, :class => "text", required: true %>
+				<%= f.text_field :company_name, :class => "text", required: false %>
 			</div>
 
 			<div class="field">	
@@ -55,7 +55,7 @@
 
 			<div class="field">
 				<%= f.label :url, "URL" %>
-				<%= f.text_field :url, :class => "text", required: true %>
+				<%= f.text_field :url, :class => "text", required: false %>
 			</div>
 
 			<hr>
@@ -81,7 +81,7 @@
 				<p class="gray">
 					Example: Send resume to Jon@company.com or Apply at http://company.com/jobs
 				</p>
-				<%= f.text_area :apply_information, :class => "text", required: true %>
+				<%= f.text_area :apply_information, :class => "text", required: false %>
 			</div>
 		</div> <!-- #new-job-post div end -->
 	</div><!-- span8 end -->
@@ -93,19 +93,19 @@
 	<h3>Get More Applicants</h3>
 	<div class="span7">
 		<br>
-		<h4 style="line-height: 25px; font-size: 16px;">
+		<p style="line-height: 25px; font-size: 16px;">
 			For only $50 you can have your job posting highlighted.<br>
 			Highlighted ads are light blue, and stand out from other similar postings. Highlighted jobs tend to get 50% more views
-		</h4>
+		</p>
 		<br>
 		<label for="job_highlighted1">
 			<%= f.check_box :highlighted1 %>
 			<strong>Yes, highlight my ad</strong> for only $50.
 		</label>
 		<br>
-		<h4 style="line-height: 25px; font-size: 16px;">
+		<p style="line-height: 25px; font-size: 16px;">
 			Sometimes exposure is the key to a successful job search. Have @apptopia tweet out your job to its over 13,000 mobile focused followers. Tweeted jobs tend to get a quick spike of at least ~100 views.
-		</h4>
+		</p>
 		<br>
 		<label for="job_highlighted2">
 			<%= f.check_box :highlighted2 %>

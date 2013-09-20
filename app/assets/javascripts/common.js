@@ -176,7 +176,6 @@ $('[data-rel=tooltip]').tooltip();
 		}
 	});
 
-
 	$('#job_company_logo').on('change', function(input){
 	
 		evt = input.target;

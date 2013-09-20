@@ -44,7 +44,7 @@ class Job < ActiveRecord::Base
   TAGS = ['','jquery', 'sql', 'c#', 'python', 'java', 'c++', 'objective C', 'ruby on rails',
           'android', 'php', 'perl', 'mysql', 'jquery', 'html5', 'css', 'mongo db', 'oracle']
 
-  JOB_TYPE = ['Full-time', 'Part-time', 'App Project']
+  JOB_TYPE = ['Full-time', 'Part-time', 'App project']
   OCCUPATION = ['Web back-end', 'Web front-end', 'Web-design',
                 'QA/Testing', 'Other']
   SEARCH_TERMS = ['Date Posted', "Company Name", "Job Title"]
@@ -127,7 +127,7 @@ class Job < ActiveRecord::Base
   end
 
   def highlighted
-    return highlighted1 | highlighted2 | highlighted3
+    return highlighted1 | highlighted2
   end
 
   private
@@ -137,7 +137,7 @@ class Job < ActiveRecord::Base
   end
      
   def set_aasm_state
-    self.aasm_state = "published"
+    self.aasm_state = "trial"
   end
   
 end

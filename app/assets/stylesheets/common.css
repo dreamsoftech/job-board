@@ -1092,3 +1092,12 @@ a.rss-feed:hover
   display: inline-block;
   width: 97%;
 }
+
+#input-description-div
+{
+  padding: 5px;
+}
+
+.help-inline{
+  color: red;
+}
