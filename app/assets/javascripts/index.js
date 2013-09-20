@@ -76,12 +76,16 @@ $(function(){
       template.find("#description").text(template.find("#description").text());
       
       var tags_element = template.find("#tags");
-      var tags = job.tags.split(',');
-      tags_element.html("");
-      for (var j = 0; j < tags.length; j++)
+      if (job.tags != null)
       {
-        tags_element.append("<li><a class='tech_tag' href='#'>" + tags[j] + "</a></li>");
+        var tags = job.tags.split(',');
+        tags_element.html("");
+        for (var j = 0; j < tags.length; j++)
+        {
+          tags_element.append("<li><a class='tech_tag' href='#'>" + tags[j] + "</a></li>");
+        }
       }
+      
 
       $("#job-list").append(template);
       $("#job-list").append($("<hr>"));

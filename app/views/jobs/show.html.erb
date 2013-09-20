@@ -21,7 +21,7 @@
 		</div>
 	</div>
   <p>
-  	<%= @job.description.gsub("\n", "<br>").html_safe unless @job.description == "" %>
+  	<%= @job.description.html_safe unless @job.description.nil? %>
   </p>
 
   <div class="alert apply-info">
