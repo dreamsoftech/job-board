@@ -1,5 +1,53 @@
 <div style="width: 1150px; display: table;">
-	<%= simple_form_for @job, html: { :method => :put, multipart: true, :class => "job-form form-horizontal"} do |f| %>
-		<%= render :partial => 'form', locals: { f: f, action: "update" } %>
-	<% end %>
+	<div style="width: 1150px; display: table;">
+		<div id="edit-job-div" class="left-main-div">
+			<div class="widget-body">
+				<div class="widget-main">
+					<div class="row-fluid">
+						<div id="fuelux-wizard" style="width: 50%; margin-left: -30px;" class="row-fluid" data-target="#step-container">
+							<ul class="wizard-steps">
+								<li data-target="#step1" class="active">
+									<span class="step">1</span>
+									<span class="title">Create</span>
+								</li>
+
+								<li data-target="#step2" class="">
+									<span class="step">2</span>
+									<span class="title">Preview</span>
+								</li>
+
+								<li data-target="#step3" class="">
+									<span class="step">3</span>
+									<span class="title">Publish</span>
+								</li>
+							</ul>
+						</div>
+						<br>
+						<h3 id="step-title">Step 1: Create Your Job</h3>
+						<hr>
+						<div class="step-content" id="step-container">
+							<div class="step-pane active" id="step1">
+								<%= simple_form_for @job, html: { :method => :put, multipart: true, :class => "job-form form-horizontal"} do |f| %>
+									<%= render partial: "form", locals: { f: f } %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div><!--/widget-main-->
+			</div><!--/widget-body-->
+		</div>
+		<div class="post-job-guide pull-right">
+			<div class="title">
+				<h5 style="background-color: "> Why post on our Job Board?</h5>
+			</div>
+			<div class="content">
+				<p><b>You'll target the cream of the crop.</b><br>
+				Where you post your job has a lot to do with the kind of people you'll attract. Our Job Board attracts the best because it's featured on industry-leading sites such as Signal vs. Noise, A List Apart, Zeldman.com, Kottke.org, Coudal.com, and the Ruby on Rails site. People who visit these sites value beautiful design, clean code, and high standards.</p>
+				<p><b>One of a few, not one of many.</b><br>
+				You won't have to worry about being a needle in a haystack. We charge more than other job boards to keep supply in check. There are usually less than 200 jobs on our Job Board at any one time. That means your job listing won't get lost in the shuffle like it does at other job sites. Candidates will find you.</p>
+				<p><b>Trusted by industry leaders.</b><br>
+				Industry leaders like The New York Times, CNET, Adobe, American Express, NBC, Trek, Skype, Yelp, and Facebook all use the 37signals Job Board to find the best of the best. Many of these brands come back again and again to find new candidates as their hiring needs expand.</p>
+			</div>
+		</div>
+	</div>
 </div>

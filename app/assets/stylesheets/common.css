@@ -789,6 +789,7 @@ button{
 {
     background-color: #d7ebfc;
     color: #333;
+    margin-left: 0px !important;
     border: none;
 }
 
@@ -816,13 +817,25 @@ button{
 {
     background-color: #fcf8e3;
     color: black;
-    padding: 20px;
+    width: 270px;
+    padding: 0px;
     border: 1px solid #fbeed5;
+}
+
+.post-job-guide .title
+{
+  background-color: #ff8800;
+}
+.post-job-guide .content
+{
+  padding: 20px;
 }
 
 .post-job-guide h5
 {
-  margin-bottom: 15px;
+  text-align: center;
+  margin: 0px;
+  padding: 7px 0;
   font-size: 16px;
 }
 .post-job-guide p
@@ -1026,7 +1039,7 @@ button{
   display: none;
   min-height: 200px;
   margin-top:10px;
-  padding: 4px 8px 12px;
+  padding: 4px 0px 12px;
 }
 .step-content div.active {
   display: block;

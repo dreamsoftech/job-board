@@ -7,16 +7,16 @@ jQuery.externalScript = function(url, options) {
   return jQuery.ajax(options);
 };
 
-$('#new_job').ready(function() {
+$('#payment_form').ready(function() {
   $.externalScript('https://js.stripe.com/v1/').done(function(script, textStatus) {
       Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
       
       var subscription = {
         setupForm: function() {
-          return $('#new_job button').click(function() {
+          return $('#payment_submit').click(function() {
             if ($("#stripe_token").val() == "")
             {  
-              $('button[type=submit]').prop('disabled', true);
+              $('#payment_submit').prop('disabled', true);
               subscription.processCard();
               return false;
             }
@@ -37,10 +37,10 @@ $('#new_job').ready(function() {
         handleStripeResponse: function(status, response) {
           if (status == 200) {
             $('#stripe_token').val(response.id);
-            $('#new_job').submit();
+            $('#payment_form').submit();
           } else {
             $('#stripe_error').text(response.error.message).show();
-            return $('button[type=submit]').prop('disabled', false);
+            return $('#payment_submit').prop('disabled', false);
           }
         }
       };

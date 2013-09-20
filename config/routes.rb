@@ -10,13 +10,12 @@ JobsApptopia::Application.routes.draw do
       put :open
       put :close
       put :restart
-    end
-    collection do
-      post :preview
-      put :preview
+      get :preview
+      get :publish
+      post :payment
     end
   end
-  
+
   resources :admin do
     member do
       get :dashboard

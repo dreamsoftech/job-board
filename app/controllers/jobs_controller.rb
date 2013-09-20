@@ -2,7 +2,7 @@
 class JobsController < ApplicationController
 
   # before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_filter :find_my_job, only: [:edit, :update, :destroy, :open, :close, :restart]
+  before_filter :find_my_job, only: [:preview, :publish, :edit, :update, :destroy, :open, :close, :restart]
 
   def index
     
@@ -50,17 +50,13 @@ class JobsController < ApplicationController
 
   def new
     @job = Job.new
-    # @job.deadline = Time.zone.now + 90.days
   end
 
   def create
     @job = Job.new(params[:job])
-    payment(params[:stripe_token])
-
-    puts "--------------------------------"
-    puts @payment
+    puts @job.errors.inspect
     if @job.save
-      redirect_to job_path(@job)
+      redirect_to preview_job_path(@job)
     else
       render :new
     end
@@ -69,21 +65,23 @@ class JobsController < ApplicationController
   def edit
   end
 
-  # def preview
-  #   @job = current_user.jobs.build(params[:job])
-  #   @job.created_at = Time.now
-  #   @job.valid?
+  def preview
+  end
 
-  #   render layout: false
-  # end
+  def publish
+  end
+
+  def payment
+    # transcation(params[:stripe_token])
+    redirect_to jobs_path
+  end
 
   def update
     if @job.update_attributes(params[:job])
-      flash[:notice] = "Job information is successfully updated."
+      redirect_to preview_job_path(@job)
     else
-      flash[:alert] = "Failed to update the job information."
+      render :edit
     end
-    redirect_to "/admin"
   end
 
   def restart
@@ -119,7 +117,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
   end
 
-  def payment(token)
+  def transcation(token)
     @transcation = Stripe::Charge.create(
       :amount => 40000, # 40$
       :currency => "usd",

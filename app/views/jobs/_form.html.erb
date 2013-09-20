@@ -70,7 +70,9 @@
 
 					<div class="widget-body">
 						<div class="widget-main no-padding">
-							<div class="wysiwyg-editor span11" id="input-description-div"></div>
+							<div class="wysiwyg-editor span11" id="input-description-div">
+								<%= @job.description.html_safe unless @job.description.nil? %>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -119,13 +121,8 @@
 <div class="row-fluid">
 	<br><br>
 	<div style="clear: both;">
-		<% if action == "create" %>
-			<a class="btn-u btn-lightblue btn-medium" onclick="$('.btn-next').click();">
-				Continue to Step 2 to preview your ad
-			</a>
-		<% else %>
-			<button type="submit" class="btn-u btn-lightblue btn-medium">Save</button>
-			<button onclick="history.back()" class="btn-u btn-lightblue btn-medium">Cancel</button>
-		<% end %>
+		<button type="submit" class="btn-u btn-lightblue btn-medium">
+			Continue to step 2 to preview your job posting
+		</button>
 	</div>
 </div>

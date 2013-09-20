@@ -120,6 +120,7 @@ class Job < ActiveRecord::Base
     end
     elapsed_time
   end
+
   def elapsed_date
     diff = Time.now - self.updated_at
     days = (diff / 1.day).round
@@ -128,6 +129,13 @@ class Job < ActiveRecord::Base
 
   def highlighted
     return highlighted1 | highlighted2
+  end
+
+  def total_price
+    price = 250;
+    price += 50 if highlighted1 == true
+    price += 30 if highlighted2 == true
+    return price
   end
 
   private
