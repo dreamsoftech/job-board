@@ -17,17 +17,18 @@ module JobsHelper
 # p[images][]=https://s3.amazonaws.com/apptopia.com/uploads/app/icon/37129/iD0ars9VZxyYmgb5k3nBCU0ZYNFApC4YC5FneKX8VX983e8nNAehH3ks3fBJ_csVLKs.png
 	def link_to_facebook(job)
 		# <a href="http://www.facebook.com/sharer.php?&amp;p[summary]=Want to acquire an app? (i.e. ownership, users, IP, etc) you should check out Outlook Web Mobile (OWA Email) via @apptopia!&amp;p[title]=Outlook Web Mobile (OWA Email) is on sale&amp;p[url]=http://www.apptopia.com/listings/outlook-web-mobile-owa-email&amp;s=100" class="fb" target="_blank">Share on Facebook</a>
+
 		address_facebook = "https://www.facebook.com/sharer/sharer.php?"
-		
-		summary = "&p%5Bsummary%5D=#{job.description}"
-		url = "&p%5Burl%5D=#{request.original_url}"
+		images = "&p[images][]=#{job.company_logo.url(:medium)}"
+		summary = "&p[summary]=#{job.description}"
+		url = "&p[url]=#{request.original_url}"
 		title = job.title + " - " + job.company_name
-		title = "p%5Btitle%5D=#{title}"
-		param_str = title + summary + url + "&s=100"
-		# param_str = param_str.gsub("[", "").gsub("]", "%5D").gsub("\ ", "+")
+		title = "p[title]=#{title}"
+		param_str = title + images + summary + url + "&s=100"
 		facebook = content_tag :a, "<img src='/assets/social/facebook.png'>Share this job on facebook".html_safe, 
 			:href => address_facebook + param_str, :target => '_blank'
 	end
+	
 	def link_to_linkedin(job)
 		address_linkedin = "http://www.linkedin.com/shareArticle?"
 		summary = "&summary=#{u job.description}"
