@@ -23,7 +23,7 @@ module JobsHelper
 		url = "&p%5Burl%5D=#{request.original_url}"
 		title = job.title + " - " + job.company_name
 		title = "p%5Btitle%5D=#{title}"
-		param_str = title + summary + url
+		param_str = title + summary + url + "&s=100"
 		# param_str = param_str.gsub("[", "").gsub("]", "%5D").gsub("\ ", "+")
 		facebook = content_tag :a, "<img src='/assets/social/facebook.png'>Share this job on facebook".html_safe, 
 			:href => address_facebook + param_str, :target => '_blank'
