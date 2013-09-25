@@ -45,8 +45,8 @@ class Job < ActiveRecord::Base
           'android', 'php', 'perl', 'mysql', 'jquery', 'html5', 'css', 'mongo db', 'oracle']
 
   JOB_TYPE = ['Full-time', 'Part-time', 'App project']
-  OCCUPATION = ['Web back-end', 'Web front-end', 'Web-design',
-                'QA/Testing', 'Other']
+  # OCCUPATION = ['Web back-end', 'Web front-end', 'Web-design',
+  #               'QA/Testing', 'Other']
   SEARCH_TERMS = ['Date Posted', "Company Name", "Job Title"]
 
   # validates_inclusion_of :job_type, :in => JOB_TYPE 

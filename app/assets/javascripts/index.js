@@ -76,10 +76,14 @@ $(function(){
       template.find("#description").text(template.find("#description").text());
       
       var tags_element = template.find("#tags");
+      var JOB_TYPE = ['Full-time', 'Part-time', 'App project'];
+
+      tags_element.html("");
+      tags_element.append("<li><a class='tech_tag' href='#'>" + JOB_TYPE[parseInt(job.job_type)] + "</a></li>");
+
       if (job.tags != null)
       {
         var tags = job.tags.split(',');
-        tags_element.html("");
         for (var j = 0; j < tags.length; j++)
         {
           tags_element.append("<li><a class='tech_tag' href='#'>" + tags[j] + "</a></li>");

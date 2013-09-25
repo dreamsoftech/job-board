@@ -3,7 +3,7 @@ module JobsHelper
 	require 'uri'
 
 	def show_tags(job)
-		tags_html = ""
+		tags_html = "<li><a href='#' class='tech_tag'>#{Job::JOB_TYPE[job.job_type.to_i]}</a></li>";
 		unless job.tags.nil?
 			tags = job.tags.split(',')
 			
@@ -20,7 +20,7 @@ module JobsHelper
 
 		address_facebook = "https://www.facebook.com/sharer/sharer.php?"
 		images = "&p[images][]=#{job.company_logo.url(:medium)}"
-		summary = "&p[summary]=#{job.description}"
+		summary = "&p[summary]=#{strip_tags job.description}"
 		url = "&p[url]=#{request.original_url}"
 		title = job.title + " - " + job.company_name
 		title = "p[title]=#{title}"
@@ -28,10 +28,10 @@ module JobsHelper
 		facebook = content_tag :a, "<img src='/assets/social/facebook.png'>Share this job on facebook".html_safe, 
 			:href => address_facebook + param_str, :target => '_blank'
 	end
-	
+
 	def link_to_linkedin(job)
 		address_linkedin = "http://www.linkedin.com/shareArticle?"
-		summary = "&summary=#{u job.description}"
+		summary = "&summary=#{u strip_tags(job.description)}"
 		url = "&url=#{u request.original_url}"
 		source = "&source=Apptopia"
 		title= job.title + " - " + job.company_name
@@ -45,7 +45,7 @@ module JobsHelper
 
 	def link_to_twitter(job)
 		address_twitter = "https://twitter.com/share?"
-		text = "&text=#{job.company_name} is hiring a #{job.title} at #{request.original_url}"
+		text = "&text=#{job.company_name} is looking to hire a #{job.title}, you can see posting / apply here: #{request.original_url}"
 		url = "url=#{request.original_url}"
 		related = "&related=Apptopia"
 		mini = "&mini=true"
