@@ -31,7 +31,7 @@ module JobsHelper
 
 	def link_to_linkedin(job)
 		address_linkedin = "http://www.linkedin.com/shareArticle?"
-		summary = "&summary=#{u strip_tags(job.description)}"
+		summary = "&summary=#{job.company_name} is looking to hire a #{job.title}, you can see posting / apply here: #{request.original_url}"
 		url = "&url=#{u request.original_url}"
 		source = "&source=Apptopia"
 		title= job.title + " - " + job.company_name
@@ -45,20 +45,20 @@ module JobsHelper
 
 	def link_to_twitter(job)
 		address_twitter = "https://twitter.com/share?"
-		text = "&text=#{job.company_name} is looking to hire a #{job.title}, you can see posting / apply here: #{request.original_url}"
-		url = "url=#{request.original_url}"
+		text = "text=#{job.company_name} is looking to hire a #{job.title}, you can see posting / apply here: #{request.original_url}"
+		# url = "url=#{request.original_url}"
 		related = "&related=Apptopia"
 		mini = "&mini=true"
-		param_str = url + text + related + mini
+		param_str = text + related + mini
 		linked_in = content_tag :a, "<img src='/assets/social/twitter.png'>Tweet this".html_safe, 
 			:href => address_twitter + param_str, :target => '_blank'
 	end
 
 	def mail_to(job)
-		subject = "subject=#{job.company_name} is hiring a #{job.title}"
-		body = "&body=#{job.company_name} is hiring a #{job.title} at #{request.original_url}"
+		subject = "subject=#{job.company_name} is looking to hire a #{job.title}"
+		body = "&body=#{job.company_name} is looking to hire a #{job.title}, you can see posting / apply here: #{request.original_url}"
 		mail_addr = content_tag :a, "<img src='/assets/social/message.png'>Tell a friend".html_safe, 
-			:href => "mailto:?#{subject}&#{body}", :target => '_blank'
+			:href => "mailto:?#{subject}&#{body}"
 	end
 
 	def job_checked(job_type)
